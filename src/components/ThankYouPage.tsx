@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import carfinancedLogoNew from "@/assets/carfinanced-logo-new.png";
 import carfinancedHeaderLogo from "@/assets/carfinanced-header-logo.png";
-import trustpilotLogo from "@/assets/trustpilot-logo.png";
 
 interface ConfettiPieceProps {
   color: string;
@@ -104,56 +103,66 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
   }, [formData, utmParams]);
 
   return (
-    <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Header Section */}
-      <div className="relative z-20 bg-[#FF6B8A] py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-2.25">
+    <div className="relative min-h-screen bg-white overflow-hidden">
+      {/* Pink Gradient Header with Confetti Background - Matches Home Page */}
+      <div className="relative bg-gradient-to-br from-[#FF6B8A] via-[#FF7A94] to-[#FF8FA0] overflow-hidden">
+        {/* Confetti Decorations */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-12 left-[15%] w-4 h-4 bg-yellow-300 rotate-12 rounded-sm"></div>
+          <div className="absolute top-6 left-[25%] w-2 h-6 bg-green-400 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-16 left-[35%] w-3 h-3 bg-purple-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-10 left-[45%] w-2 h-8 bg-pink-300 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-14 left-[55%] w-4 h-4 bg-orange-400 rotate-12 rounded-sm"></div>
+          <div className="absolute top-8 left-[65%] w-3 h-6 bg-cyan-400 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-12 left-[75%] w-2 h-4 bg-red-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-6 left-[85%] w-4 h-8 bg-indigo-400 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-16 left-[95%] w-2 h-3 bg-lime-400 rotate-12 rounded-sm"></div>
+          
+          {/* Additional confetti for density */}
+          <div className="absolute top-4 left-[10%] w-2 h-4 bg-yellow-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-18 left-[20%] w-3 h-3 bg-blue-300 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-7 left-[40%] w-2 h-5 bg-green-300 rotate-12 rounded-sm"></div>
+          <div className="absolute top-15 left-[60%] w-4 h-3 bg-pink-400 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-5 left-[80%] w-2 h-6 bg-purple-300 rotate-45 rounded-sm"></div>
+          <div className="absolute top-11 left-[90%] w-3 h-4 bg-orange-300 -rotate-12 rounded-sm"></div>
+        </div>
+
+        {/* Logo Centered */}
+        <div className="relative z-10 pt-8 pb-4 px-6 text-center">
+          <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
             <img 
               src={carfinancedHeaderLogo} 
               alt="Car Financed Logo" 
-              className="h-10 md:h-12"
+              className="h-8 md:h-10"
             />
-            <div className="flex items-center gap-2">
-              <img 
-                src={trustpilotLogo} 
-                alt="Trustpilot" 
-                className="h-5"
-              />
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="white">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  </div>
-                ))}
-              </div>
-              <a 
-                href="https://www.trustpilot.com/review/carfinanced.co.uk" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white text-sm hover:underline ml-1"
-              >
-                Based on <span className="font-semibold underline">456 reviews</span>
-              </a>
-            </div>
-          </div>
+          </a>
         </div>
-      </div>
 
-      {/* Wavy Divider */}
-      <div className="relative z-10 h-24 bg-[#FF6B8A] overflow-hidden">
-        <svg
-          viewBox="0 0 1440 120"
-          className="absolute bottom-0 w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,120 L0,120 Z"
-            fill="#FFEB3B"
-          />
-        </svg>
+        {/* Trustpilot Stars */}
+        <div className="relative z-10 pb-9 px-6 flex items-center justify-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+          </svg>
+          <span className="text-white font-semibold">Trustpilot</span>
+          <div className="flex gap-1 ml-2">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+                </svg>
+              </div>
+            ))}
+          </div>
+          <span className="text-white text-sm ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
+        </div>
+
+        {/* Wavy Bottom Edge */}
+        <div className="relative" style={{ marginTop: '40px' }}>
+          <svg className="w-full h-auto" style={{ display: 'block', transform: 'translateY(1px)' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,40 Q360,10 720,40 T1440,40 L1440,100 L0,100 Z" fill="white"/>
+          </svg>
+        </div>
       </div>
       
       {/* Confetti Animation */}
@@ -163,7 +172,11 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
         ))}
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4 text-center -mt-12">
+      {/* Main Content with White Background */}
+      <main className="bg-white pt-12 pb-8 min-h-screen -mt-1 flex flex-col">
+        <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
+      
+      <div className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center">
         <div className="max-w-2xl mx-auto">
           {/* Checkmark Circle */}
           <div className="flex justify-center mb-8">
@@ -196,7 +209,10 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
             </a>.
           </p>
         </div>
-      </div>
+        
+        </div>
+        </div>
+      </main>
 
       <style dangerouslySetInnerHTML={{
         __html: `
