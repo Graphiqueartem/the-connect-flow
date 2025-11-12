@@ -104,10 +104,17 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Header Section */}
-      <div className="relative z-20 bg-[#FF6B8A] py-4">
+      {/* Confetti Animation - Full screen */}
+      <div className="fixed inset-0 pointer-events-none z-50">
+        {confettiPieces.map((piece, index) => (
+          <ConfettiPiece key={index} {...piece} />
+        ))}
+      </div>
+
+      {/* Header Section with confetti background */}
+      <div className="relative z-20 bg-[#FF6B8A] py-6 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-4">
             <img 
               src={carfinancedLogoNew} 
               alt="Car Financed Logo" 
@@ -151,13 +158,6 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
             fill="#FFEB3B"
           />
         </svg>
-      </div>
-      
-      {/* Confetti Animation */}
-      <div className="absolute inset-0 pointer-events-none z-30">
-        {confettiPieces.map((piece, index) => (
-          <ConfettiPiece key={index} {...piece} />
-        ))}
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4 text-center -mt-12">
