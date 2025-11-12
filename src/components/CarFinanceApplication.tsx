@@ -82,9 +82,6 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (employmentStatus: string) => {
     updateFormData({ employmentStatus: employmentStatus as any });
-    if (onNext) {
-      setTimeout(() => onNext(), 300);
-    }
   };
 
   return (
@@ -250,9 +247,6 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleTitleSelection = (title: string) => {
     updateFormData({ title: title as any });
-    if (onNext) {
-      setTimeout(() => onNext(), 300);
-    }
   };
 
   return (
@@ -1102,90 +1096,43 @@ const CarFinanceApplication = () => {
             </div>
 
             {/* Navigation - Hidden for step 1 as it has its own buttons */}
-            {currentStep !== 1 && (
-            <div className="mt-12 flex flex-col items-center gap-6">
-            {/* Show continue button for steps that don't auto-advance */}
-              {(() => {
-                // Steps that auto-advance and don't need continue buttons: 2, 3, 6 (removed 1)
-                const autoAdvanceSteps = [2, 3, 6];
-                
-                // Also check for previous housing situation steps which auto-advance (DYNAMIC)
-                const employmentStartStep = getEmploymentStep();
-                const isPreviousHousingSituationStep = currentStep < employmentStartStep && 
-                  currentStep > 7 && (currentStep - 8) % 3 === 1; // Housing situation steps are at positions 9, 12, 15, 18 in old numbering, but now dynamic
-                
-                // Check if current step is employment status step (should auto-advance)
-                const isEmploymentStatusStep = currentStep === employmentStartStep;
-                
-                // All employment and final steps that need continue buttons
-                const isJobDetailsStep = currentStep === employmentStartStep + 1;
-                const isEmploymentDurationStep = currentStep === employmentStartStep + 2;
-                const isMonthlyIncomeStep = currentStep === employmentStartStep + 3;
-                const isLoanAmountStep = currentStep === employmentStartStep + 4;
-                const isPersonalDetailsStep = currentStep === employmentStartStep + 5;
-                
-                console.log('Navigation logic:', {
-                  currentStep,
-                  employmentStartStep,
-                  isEmploymentStatusStep,
-                  isJobDetailsStep,
-                  autoAdvanceSteps,
-                  isPreviousHousingSituationStep,
-                  totalSteps: getTotalSteps()
-                });
-                
-                const shouldShowContinue = !autoAdvanceSteps.includes(currentStep) && 
-                                          !isPreviousHousingSituationStep &&
-                                          !isEmploymentStatusStep && // Employment status should auto-advance
-                                          currentStep < getTotalSteps();
-
-                if (currentStep === 5 && formData.address) {
-                  return (
-                    <button onClick={nextStep} className="continue-button w-full max-w-md" data-testid="next-button">
-                      Add address
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                  );
-                } else if (shouldShowContinue) {
-                  // Special button text for specific steps
-                  let buttonText = "Continue";
-                  if (isJobDetailsStep) {
-                    buttonText = "Continue";
-                  } else if (isEmploymentDurationStep) {
-                    buttonText = "Continue";
-                  } else if (isMonthlyIncomeStep) {
-                    buttonText = "Continue";
-                  } else if (isLoanAmountStep) {
-                    buttonText = "Continue";
-                  } else if (isPersonalDetailsStep) {
-                    buttonText = "Continue";
-                  }
-                  
-                  return (
-                    <button onClick={nextStep} className="continue-button w-full max-w-md" data-testid="next-button">
-                      {buttonText}
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                  );
-                } else if (currentStep === getTotalSteps()) {
-                  return (
-                    <button onClick={nextStep} className="continue-button w-full max-w-md" data-testid="next-button">
-                      Submit Application
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                  );
-                }
-                return null;
-              })()}
-
-              {/* Back Button - Bottom Position */}
-              {currentStep > 1 && (
-                <button onClick={prevStep} className="back-link">
-                  <ArrowLeft className="w-4 h-4" />
+            {currentStep !== 1 && currentStep < getTotalSteps() && (
+            <div className="mt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+              <div className="flex items-center justify-center gap-4 w-full">
+                <button 
+                  onClick={prevStep}
+                  className="flex-1 max-w-[140px] px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors"
+                >
                   Back
                 </button>
-              )}
+                <button 
+                  onClick={nextStep}
+                  className="flex-1 max-w-[140px] px-6 py-3 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors"
+                >
+                  Next
+                </button>
+              </div>
           </div>
+            )}
+            
+            {/* Final submit button */}
+            {currentStep === getTotalSteps() && (
+              <div className="mt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+                <div className="flex items-center justify-center gap-4 w-full">
+                  <button 
+                    onClick={prevStep}
+                    className="flex-1 max-w-[140px] px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors"
+                  >
+                    Back
+                  </button>
+                  <button 
+                    onClick={nextStep}
+                    className="flex-1 max-w-[140px] px-6 py-3 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>
@@ -1300,16 +1247,10 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleLicenceSelection = (hasFullLicence: boolean) => {
     updateFormData({ hasFullLicence, licenceType: "" });
-    if (hasFullLicence) {
-      // Auto-advance if they have full licence
-      setTimeout(() => onNext(), 300);
-    }
   };
 
   const handleLicenceTypeSelection = (licenceType: string) => {
     updateFormData({ licenceType: licenceType as any });
-    // Auto-advance after licence type selection
-    setTimeout(() => onNext(), 300);
   };
 
   return (
@@ -1380,8 +1321,6 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (maritalStatus: string) => {
     updateFormData({ maritalStatus: maritalStatus as any });
-    // Auto-advance after a short delay
-    setTimeout(() => onNext(), 300);
   };
 
   return (
@@ -1534,8 +1473,6 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (housingSituation: string) => {
     updateFormData({ housingSituation: housingSituation as any });
-    // Auto-advance after a short delay
-    setTimeout(() => onNext(), 300);
   };
 
   return (
@@ -1662,11 +1599,6 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
     
     console.log('🏠 Updated addresses:', updatedAddresses);
     updateFormData({ previousAddresses: updatedAddresses });
-    
-    // Auto-advance after selection using onNext callback
-    if (onNext) {
-      setTimeout(() => onNext(), 300);
-    }
   };
 
   return (
