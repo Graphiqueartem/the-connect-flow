@@ -1315,26 +1315,34 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
   return (
     <div>
       <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        Do you have a full UK driving licence? 🚗
+        Do you have a full UK driving licence?
       </h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-8">
+      <div className="flex justify-center gap-6 mb-8">
         <button
           onClick={() => handleLicenceSelection(true)}
-          className={`option-button ${formData.hasFullLicence === true ? 'selected' : ''}`}
+          className={`px-16 py-6 rounded-2xl border-2 text-lg font-medium transition-all ${
+            formData.hasFullLicence === true 
+              ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+              : 'bg-background border-border text-foreground hover:border-foreground/30'
+          }`}
         >
           Yes
         </button>
         <button
           onClick={() => handleLicenceSelection(false)}
-          className={`option-button ${formData.hasFullLicence === false ? 'selected' : ''}`}
+          className={`px-16 py-6 rounded-2xl border-2 text-lg font-medium transition-all ${
+            formData.hasFullLicence === false 
+              ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+              : 'bg-background border-border text-foreground hover:border-foreground/30'
+          }`}
         >
-          No
+          Nope
         </button>
       </div>
 
       {formData.hasFullLicence === false && (
-        <div>
+        <div className="mt-12">
           <h2 className="text-xl font-bold text-foreground mb-8">
             What licence do you have?
           </h2>
@@ -1349,7 +1357,11 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
               <button
                 key={option.value}
                 onClick={() => handleLicenceTypeSelection(option.value)}
-                className={`option-button ${formData.licenceType === option.value ? 'selected' : ''}`}
+                className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                  formData.licenceType === option.value 
+                    ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                    : 'bg-background border-border text-foreground hover:border-foreground/30'
+                }`}
               >
                 {option.label}
               </button>
