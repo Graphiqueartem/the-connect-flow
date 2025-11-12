@@ -6,7 +6,7 @@ interface ConfettiPieceProps {
   left: number;
   animationDelay: number;
   animationDuration: number;
-  blastType: 'center' | 'left' | 'right';
+  rotation: number;
 }
 
 const ConfettiPiece: React.FC<ConfettiPieceProps> = ({ 
@@ -15,30 +15,23 @@ const ConfettiPiece: React.FC<ConfettiPieceProps> = ({
   left, 
   animationDelay, 
   animationDuration,
-  blastType
+  rotation
 }) => {
-  const getAnimationName = () => {
-    switch (blastType) {
-      case 'left': return 'blast-left';
-      case 'right': return 'blast-right';
-      default: return 'blast-center';
-    }
-  };
-
   return (
     <div
       className="absolute"
       style={{
         backgroundColor: color,
-        width: `${size * 1.5}px`, // Make rectangular - wider than tall
+        width: `${size * 1.5}px`,
         height: `${size}px`,
         left: `${left}%`,
-        top: '50%',
+        top: '-20px',
         animationDelay: `${animationDelay}s`,
         animationDuration: `${animationDuration}s`,
-        animation: `${getAnimationName()} ${animationDuration}s ${animationDelay}s ease-out forwards`,
+        animation: `fall-down ${animationDuration}s ${animationDelay}s ease-in forwards`,
+        transform: `rotate(${rotation}deg)`,
         boxShadow: `0 0 ${size/3}px ${color}`,
-        borderRadius: '1px', // Slight rounding like real confetti
+        borderRadius: '2px',
       }}
     />
   );
@@ -88,22 +81,19 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
     sendToWebhook();
 
-    // Generate realistic party popper confetti pieces
+    // Generate confetti pieces that fall from top
     const pieces: ConfettiPieceProps[] = [];
     const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'];
     
-    // Create realistic rectangular confetti pieces like party poppers
-    for (let i = 0; i < 400; i++) {
-      const blastTypes: ('center' | 'left' | 'right')[] = ['center', 'left', 'right', 'left', 'right'];
-      const isMainBlast = i < 150;
-      
+    // Create confetti pieces that fall from the top
+    for (let i = 0; i < 150; i++) {
       pieces.push({
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: isMainBlast ? Math.random() * 8 + 3 : Math.random() * 6 + 2, // Smaller, more realistic pieces
-        left: isMainBlast ? 35 + Math.random() * 30 : Math.random() * 100,
-        animationDelay: isMainBlast ? Math.random() * 0.3 : Math.random() * 1.8 + 0.4,
-        animationDuration: Math.random() * 3 + 4,
-        blastType: isMainBlast ? 'center' : blastTypes[Math.floor(Math.random() * blastTypes.length)],
+        size: Math.random() * 8 + 4,
+        left: Math.random() * 100,
+        animationDelay: Math.random() * 3,
+        animationDuration: Math.random() * 3 + 3,
+        rotation: Math.random() * 360,
       });
     }
     
@@ -170,69 +160,14 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
       <style dangerouslySetInnerHTML={{
         __html: `
-          @keyframes blast-center {
+          @keyframes fall-down {
             0% {
-              transform: translateY(0) translateX(0) rotate(0deg) scale(0);
+              transform: translateY(0) rotate(0deg);
               opacity: 1;
-            }
-            15% {
-              transform: translateY(-60vh) translateX(0) rotate(180deg) scale(1.5);
-              opacity: 1;
-            }
-            35% {
-              transform: translateY(-70vh) translateX(0) rotate(270deg) scale(1.2);
-              opacity: 0.8;
             }
             100% {
-              transform: translateY(120vh) translateX(0) rotate(720deg) scale(0.6);
-              opacity: 0;
-            }
-          }
-
-          @keyframes blast-left {
-            0% {
-              transform: translateY(0) translateX(0) rotate(0deg) scale(0);
-              opacity: 1;
-            }
-            20% {
-              transform: translateY(-50vh) translateX(-40vw) rotate(225deg) scale(1.8);
-              opacity: 1;
-            }
-            40% {
-              transform: translateY(-60vh) translateX(-70vw) rotate(360deg) scale(1.3);
-              opacity: 0.7;
-            }
-            100% {
-              transform: translateY(120vh) translateX(-100vw) rotate(810deg) scale(0.4);
-              opacity: 0;
-            }
-          }
-
-          @keyframes blast-right {
-            0% {
-              transform: translateY(0) translateX(0) rotate(0deg) scale(0);
-              opacity: 1;
-            }
-            20% {
-              transform: translateY(-50vh) translateX(40vw) rotate(-225deg) scale(1.8);
-              opacity: 1;
-            }
-            40% {
-              transform: translateY(-60vh) translateX(70vw) rotate(-360deg) scale(1.3);
-              opacity: 0.7;
-            }
-            100% {
-              transform: translateY(120vh) translateX(100vw) rotate(-810deg) scale(0.4);
-              opacity: 0;
-            }
-          }
-
-          @keyframes pulse-glow {
-            0%, 100% {
-              box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
-            }
-            50% {
-              box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+              transform: translateY(100vh) rotate(720deg);
+              opacity: 0.3;
             }
           }
         `

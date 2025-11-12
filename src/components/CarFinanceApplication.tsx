@@ -300,8 +300,8 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        Almost done, let us know who you are? 📝
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+        Almost done, let us know who you are?
       </h1>
       
       <div className="max-w-4xl mx-auto space-y-8">
