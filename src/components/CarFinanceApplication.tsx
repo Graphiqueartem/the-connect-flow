@@ -86,32 +86,85 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        What is your employment status? 🏢
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+        What is your employment status?
       </h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-        {[
-          { value: "full-time", label: "Full-Time Employment" },
-          { value: "self-employed", label: "Self-Employed" },
-          { value: "part-time", label: "Part-Time Employment" },
-          { value: "retired", label: "Retired" },
-        ].map((option) => (
-          <button
-            key={option.value}
-            onClick={() => handleSelection(option.value)}
-            className={`option-button ${formData.employmentStatus === option.value ? 'selected' : ''}`}
-          >
-            {option.label}
-          </button>
-        ))}
-        <div className="md:col-span-2">
-          <button
-            onClick={() => handleSelection("other")}
-            className={`option-button max-w-md mx-auto ${formData.employmentStatus === "other" ? 'selected' : ''}`}
-          >
-            Other
-          </button>
+      <div className="flex flex-col items-center gap-4 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {[
+            { value: "full-time", label: "Full-Time Employment" },
+            { value: "self-employed", label: "Self-Employed" },
+            { value: "part-time", label: "Part-Time Employment" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelection(option.value)}
+              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                formData.employmentStatus === option.value 
+                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {[
+            { value: "retired", label: "Retired" },
+            { value: "education", label: "Education" },
+            { value: "career", label: "Career" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelection(option.value)}
+              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                formData.employmentStatus === option.value 
+                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {[
+            { value: "benefits", label: "Benefits" },
+            { value: "temporary", label: "Temporary/Contract" },
+            { value: "homemaker", label: "Homemaker" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelection(option.value)}
+              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                formData.employmentStatus === option.value 
+                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+          {[
+            { value: "armed-services", label: "Armed Services" },
+            { value: "other", label: "Other" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelection(option.value)}
+              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                formData.employmentStatus === option.value 
+                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
@@ -120,11 +173,11 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 
 const JobDetailsStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-foreground mb-6">
-      Great! What's your current job title? 💼
+    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+      Great! What's your current job title?
     </h1>
     
-    <p className="text-muted-foreground text-base mb-12">
+    <p className="text-gray-600 text-base mb-12">
       (We won't contact your employer)
     </p>
     
@@ -150,15 +203,15 @@ const JobDetailsStep = ({ formData, updateFormData }: { formData: FormData; upda
 
 const EmploymentDurationStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-      How long have you worked at {formData.companyName}? ⏳
+    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      How long have you worked at {formData.companyName}?
     </h1>
     
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
       <div>
         <input
           type="number"
-          placeholder="Years"
+          placeholder="Year"
           value={formData.employmentDurationYears}
           onChange={(e) => updateFormData({ employmentDurationYears: e.target.value })}
           className="address-input"
@@ -169,7 +222,7 @@ const EmploymentDurationStep = ({ formData, updateFormData }: { formData: FormDa
       <div>
         <input
           type="number"
-          placeholder="Months"
+          placeholder="Month"
           value={formData.employmentDurationMonths}
           onChange={(e) => updateFormData({ employmentDurationMonths: e.target.value })}
           className="address-input"
