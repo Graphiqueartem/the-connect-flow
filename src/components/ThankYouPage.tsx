@@ -104,22 +104,40 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Confetti Animation - Full screen */}
-      <div className="fixed inset-0 pointer-events-none z-50">
-        {confettiPieces.map((piece, index) => (
-          <ConfettiPiece key={index} {...piece} />
-        ))}
-      </div>
-
       {/* Header Section with confetti background */}
-      <div className="relative z-20 bg-[#FF6B8A] py-6 overflow-hidden">
+      <div className="relative bg-[#FF6B8A] overflow-hidden py-6">
+        {/* Confetti Decorations */}
+        <div className="absolute inset-0 opacity-60">
+          <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-12 left-[15%] w-4 h-4 bg-yellow-300 rotate-12 rounded-sm"></div>
+          <div className="absolute top-6 left-[25%] w-2 h-6 bg-green-400 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-16 left-[35%] w-3 h-3 bg-purple-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-10 left-[45%] w-2 h-8 bg-pink-300 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-14 left-[55%] w-4 h-4 bg-orange-400 rotate-12 rounded-sm"></div>
+          <div className="absolute top-8 left-[65%] w-3 h-6 bg-cyan-400 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-12 left-[75%] w-2 h-4 bg-red-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-6 left-[85%] w-4 h-8 bg-indigo-400 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-16 left-[95%] w-2 h-3 bg-lime-400 rotate-12 rounded-sm"></div>
+          
+          {/* Additional confetti for density */}
+          <div className="absolute top-4 left-[10%] w-2 h-4 bg-yellow-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-18 left-[20%] w-3 h-3 bg-blue-300 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-7 left-[40%] w-2 h-5 bg-green-300 rotate-12 rounded-sm"></div>
+          <div className="absolute top-15 left-[60%] w-4 h-3 bg-pink-400 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-5 left-[80%] w-2 h-6 bg-purple-300 rotate-45 rounded-sm"></div>
+          <div className="absolute top-11 left-[90%] w-3 h-4 bg-orange-300 -rotate-12 rounded-sm"></div>
+        </div>
+
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-4">
+          <div className="relative z-10 flex flex-col items-center gap-4">
+            {/* Logo */}
             <img 
               src={carfinancedLogoNew} 
               alt="Car Financed Logo" 
               className="h-10 md:h-12"
             />
+            
+            {/* Trustpilot Section */}
             <div className="flex items-center gap-2">
               <img 
                 src={trustpilotLogo} 
@@ -147,7 +165,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
       </div>
 
       {/* Wavy Divider */}
-      <div className="relative z-10 h-24 bg-[#FF6B8A] overflow-hidden">
+      <div className="relative h-24 bg-[#FF6B8A] overflow-hidden">
         <svg
           viewBox="0 0 1440 120"
           className="absolute bottom-0 w-full h-full"
@@ -158,6 +176,13 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
             fill="#FFEB3B"
           />
         </svg>
+      </div>
+      
+      {/* Confetti Animation - Full screen */}
+      <div className="fixed inset-0 pointer-events-none z-50">
+        {confettiPieces.map((piece, index) => (
+          <ConfettiPiece key={index} {...piece} />
+        ))}
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4 text-center -mt-12">
