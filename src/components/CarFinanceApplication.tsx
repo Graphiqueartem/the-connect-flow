@@ -240,21 +240,21 @@ const MonthlyIncomeStep = ({ formData, updateFormData }: { formData: FormData; u
   
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        Roughly, how much do you earn each month? 💷
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+        Roughly, how much do you earn each month?
       </h1>
       
       <div className="max-w-2xl mx-auto mb-8">
         <div className="relative">
-          <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground text-base">£</span>
           <input
             type="number"
-            placeholder="10,000"
+            placeholder="Enter Amount"
             value={formData.monthlyIncome}
             onChange={(e) => updateFormData({ monthlyIncome: e.target.value })}
-            className="address-input pl-8"
+            className="address-input pr-12"
             min="0"
           />
+          <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground text-base">$</span>
         </div>
       </div>
       
@@ -269,27 +269,23 @@ const MonthlyIncomeStep = ({ formData, updateFormData }: { formData: FormData; u
 
 const LoanAmountStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-foreground mb-8">
-      Roughly how much would you like to borrow? 💷
+    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      Roughly how much would you like to borrow?
     </h1>
     
-    <div className="max-w-2xl mx-auto mb-8">
+    <div className="max-w-2xl mx-auto">
       <div className="relative">
-        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground text-base">£</span>
+        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground text-base">$</span>
         <input
           type="number"
-          placeholder="10,000"
+          placeholder="Enter Amount"
           value={formData.loanAmount}
           onChange={(e) => updateFormData({ loanAmount: e.target.value })}
-          className="address-input pl-8"
+          className="address-input pl-12"
           min="0"
         />
       </div>
     </div>
-    
-    <p className="text-muted-foreground text-center">
-      You can change this later on.
-    </p>
   </div>
 );
 
@@ -362,8 +358,8 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 
 const ContactDetailsStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-      Finally, how should we contact you? 📱
+    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      Finally, how should we contact you?
     </h1>
     
     <div className="max-w-2xl mx-auto space-y-6">
