@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { MapPin } from "lucide-react";
 
 interface AddressSuggestion {
   display: string;
@@ -204,6 +205,11 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
 
   return (
     <div ref={wrapperRef} className="relative w-full">
+      {/* Location icon */}
+      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-900 z-10">
+        <MapPin size={20} />
+      </div>
+      
       <input
         ref={inputRef}
         type="text"
@@ -211,7 +217,7 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
         onChange={handleInputChange}
         onFocus={handleInputFocus}
         onKeyDown={handleKeyDown}
-        className={className}
+        className={`${className} pl-12`}
         placeholder={placeholder}
         autoComplete="off"
       />

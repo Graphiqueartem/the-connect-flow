@@ -1473,7 +1473,7 @@ const AddressStep = ({ formData, updateFormData }: { formData: FormData; updateF
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
         Next, where do you live?
       </h1>
       
