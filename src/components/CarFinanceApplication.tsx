@@ -1326,30 +1326,56 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
   return (
     <div>
       <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        Which best describes you? 🔍
+        Which best describes you?
       </h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-        {[
-          { value: "married", label: "Married" },
-          { value: "single", label: "Single" },
-          { value: "cohabiting", label: "Cohabiting" },
-          { value: "divorced", label: "Divorced" },
-          { value: "separated", label: "Separated" },
-          { value: "widowed", label: "Widowed" },
-        ].map((option) => (
-          <button
-            key={option.value}
-            onClick={() => handleSelection(option.value)}
-            className={`option-button ${formData.maritalStatus === option.value ? 'selected' : ''}`}
-          >
-            {option.label}
-          </button>
-        ))}
-        <div className="md:col-span-2">
+      <div className="flex flex-col items-center gap-4 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {[
+            { value: "married", label: "Married" },
+            { value: "single", label: "Single" },
+            { value: "cohabiting", label: "Cohabiting" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelection(option.value)}
+              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                formData.maritalStatus === option.value 
+                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {[
+            { value: "divorced", label: "Divorced" },
+            { value: "separated", label: "Separated" },
+            { value: "widowed", label: "Widowed" },
+          ].map((option) => (
+            <button
+              key={option.value}
+              onClick={() => handleSelection(option.value)}
+              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+                formData.maritalStatus === option.value 
+                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+        <div className="w-full md:max-w-[calc(33.333%-0.5rem)] md:mx-auto">
           <button
             onClick={() => handleSelection("civil-partnership")}
-            className={`option-button max-w-md mx-auto ${formData.maritalStatus === "civil-partnership" ? 'selected' : ''}`}
+            className={`w-full px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              formData.maritalStatus === "civil-partnership" 
+                ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                : 'bg-background border-border text-foreground hover:border-foreground/30'
+            }`}
           >
             Civil Partnership
           </button>
@@ -1378,15 +1404,20 @@ const DateOfBirthStep = ({ formData, updateFormData }: { formData: FormData; upd
   return (
     <div>
       <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        What is your date of birth? 📅
+        What is your date of birth?
       </h1>
       
-      <div className="max-w-md mx-auto">
+      <div className="max-w-xl mx-auto">
         <input
           type="date"
           value={formData.dateOfBirth}
           onChange={(e) => handleDateChange(e.target.value)}
-          className={`date-input ${isUnder18 ? 'border-red-500 focus:border-red-500' : ''}`}
+          placeholder="DD / MM / YYYY"
+          className={`w-full px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+            isUnder18 
+              ? 'border-red-500 focus:border-red-500' 
+              : 'border-border focus:border-foreground/30'
+          } bg-background text-foreground focus:outline-none`}
           max={new Date(Date.now() - 18 * 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
         />
         
@@ -1401,10 +1432,6 @@ const DateOfBirthStep = ({ formData, updateFormData }: { formData: FormData; upd
             </p>
           </div>
         )}
-        
-        <p className="text-muted-foreground text-sm mt-2 text-center">
-          You must be 18+ to apply for vehicle finance
-        </p>
       </div>
     </div>
   );
