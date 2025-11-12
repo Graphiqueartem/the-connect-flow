@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import carfinancedLogoNew from "@/assets/carfinanced-logo-new.png";
+import carfinancedHeaderLogo from "@/assets/carfinanced-header-logo.png";
 import trustpilotLogo from "@/assets/trustpilot-logo.png";
 
 interface ConfettiPieceProps {
@@ -107,9 +108,9 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
       {/* Header Section */}
       <div className="relative z-20 bg-[#FF6B8A] py-4">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-2.25">
             <img 
-              src={carfinancedLogoNew} 
+              src={carfinancedHeaderLogo} 
               alt="Car Financed Logo" 
               className="h-10 md:h-12"
             />

@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import AddressAutocomplete from "./AddressAutocomplete";
 import carfinancedLogoNew from "@/assets/carfinanced-logo-new.png";
+import carfinancedHeaderLogo from "@/assets/carfinanced-header-logo.png";
 import trustpilotLogo from "@/assets/trustpilot-logo.png";
 import ThankYouPage from "./ThankYouPage";
 import { submitToAutoConvert, UTMParams } from "@/services/autoconvert";
@@ -1025,14 +1026,16 @@ const CarFinanceApplication = () => {
         {/* Logo Centered */}
         <div className="relative z-10 pt-8 pb-4 px-6 text-center">
           <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
-            <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
-              <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
-            </div>
+            <img 
+              src={carfinancedHeaderLogo} 
+              alt="Car Financed Logo" 
+              className="h-8 md:h-10"
+            />
           </a>
         </div>
 
         {/* Trustpilot Stars */}
-        <div className="relative z-10 pb-12 px-6 flex items-center justify-center gap-2">
+        <div className="relative z-10 pb-9 px-6 flex items-center justify-center gap-2">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
