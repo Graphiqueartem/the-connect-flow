@@ -1578,20 +1578,16 @@ const PreviousAddressStep = ({ formData, updateFormData, addressIndex }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-6">
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
         And what was your previous address?
       </h1>
-      
-      <p className="text-muted-foreground text-base mb-12">
-        Just start typing your postcode or address..
-      </p>
       
       <div className="max-w-2xl mx-auto">
         <AddressAutocomplete
           value={formData.previousAddresses[addressIndex]?.address || ""}
           onChange={handleAddressChange}
           className="address-input"
-          placeholder="e.g. 'M24 1SL' or 'Moston Road'"
+          placeholder="Just start typing your postcode or address.."
         />
       </div>
     </div>
@@ -1630,11 +1626,11 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        Ok, Which best describes you? 🔍
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+        Ok, Which best describes you?
       </h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
         {[
           { value: "private-tenant", label: "Private tenant" },
           { value: "home-owner", label: "Home owner" },
@@ -1644,7 +1640,11 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
           <button
             key={option.value}
             onClick={() => handleSituationChange(option.value)}
-            className={`option-button ${formData.previousAddresses[addressIndex]?.housingSituation === option.value ? 'selected' : ''}`}
+            className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              formData.previousAddresses[addressIndex]?.housingSituation === option.value 
+                ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                : 'bg-background border-border text-foreground hover:border-foreground/30'
+            }`}
           >
             {option.label}
           </button>
