@@ -1,1 +1,10 @@
 project_id = "qtxtfxnnrbedssfyzeyx"
+
+[functions.get-google-maps-key]
+verify_jwt = false
+
+[functions.submit-to-autoconvert]
+verify_jwt = false
+
+[functions.address-lookup]
+verify_jwt = false

@@ -2,95 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Car Finance Application Design System */
 
 @layer base {
   :root {
+    /* CarFinanced Brand Colors - Exact Match */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 0 0% 20%;
+    
+    /* Primary Blue - CarFinanced Blue - #175fbe */
+    --primary: 214 78% 42%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 214 78% 37%;
+    --primary-light: 214 78% 95%;
+    
+    /* Secondary & Muted */
+    --secondary: 0 0% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    /* Form Elements */
+    --border: 0 0% 90%;
+    --input: 0 0% 100%;
+    --ring: 214 78% 42%;
+    
+    /* Cards & Components */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 0 0% 20%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --popover-foreground: 0 0% 20%;
+    
+    /* Status & Accent */
+    --success: 142 76% 36%;
+    --destructive: 0 84% 60%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 20%;
+    
+    /* Progress Bar */
+    --progress-bg: 0 0% 90%;
+    --progress-fill: 214 78% 42%;
+    
+    --radius: 2rem;
   }
 }
 
@@ -100,6 +53,164 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-gray-800 antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* Finance Application Specific Styles */
+  .form-step {
+    @apply animate-in fade-in-0 slide-in-from-right-5 duration-300;
+  }
+  
+  .form-step-exit {
+    @apply animate-out fade-out-0 slide-out-to-left-5 duration-200;
+  }
+}
+
+@layer components {
+  /* CarFinanced Option Buttons - Exact CTA Style */
+  .option-button {
+    padding: 10px;
+    max-height: 52px;
+    font-size: 0.96rem !important;
+    border: 2px solid #175fbe;
+    border-radius: 10px;
+    background: #fff;
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 20px 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    font-weight: 600;
+    cursor: pointer;
+    min-width: 140px;
+    color: #175fbe;
+  }
+  
+  .option-button.selected {
+    @apply bg-blue-600 text-white border-blue-600;
+  }
+  
+  .option-button:hover {
+    background: #f8fafc;
+  }
+  
+  /* Continue Button - Match Reference Design */
+  .continue-button {
+    @apply w-full max-w-md mx-auto px-6 py-3 font-semibold text-white bg-blue-600 rounded-2xl hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2;
+    font-size: 0.9rem;
+  }
+  
+  /* Back Link */
+  .back-link {
+    @apply inline-flex items-center gap-2 text-primary hover:underline font-medium cursor-pointer px-4 sm:px-0;
+  }
+  
+  /* Trustpilot Badge */
+  .trustpilot-badge {
+    @apply inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-green-400 rounded-md text-xs sm:text-sm text-green-700 bg-green-50 hover:bg-green-100 transition-colors;
+  }
+  
+  /* Progress Bar */
+  .progress-bar-fill {
+    @apply h-2 bg-primary rounded-full transition-all duration-500 ease-out;
+  }
+  
+  /* Input Styling - All inputs get 8px border radius */
+  input[type="text"], 
+  input[type="email"], 
+  input[type="tel"], 
+  input[type="number"], 
+  input[type="date"],
+  .date-input,
+  .address-input,
+  select,
+  textarea {
+    border-radius: 8px !important;
+  }
+  
+  /* Date Input Custom */
+  .date-input {
+    @apply w-full border-2 border-gray-300 focus:border-primary focus:outline-none;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    margin: 0 8px; /* Prevent touching edges */
+    max-width: calc(100% - 16px);
+    border-radius: 8px !important;
+  }
+  
+  @media (min-width: 640px) {
+    .date-input {
+      padding: 0.8rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Address Input */
+  .address-input {
+    @apply w-full border-2 border-gray-300 focus:border-primary focus:outline-none;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    margin: 0 8px; /* Prevent touching edges */
+    max-width: calc(100% - 16px);
+    border-radius: 8px !important;
+  }
+  
+  @media (min-width: 640px) {
+    .address-input {
+      padding: 0.8rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Form containers for proper spacing - Mobile Responsive */
+  .form-container {
+    @apply px-4 sm:px-6 md:px-8 max-w-2xl mx-auto;
+  }
+  
+  /* Mobile responsive layout */
+  .mobile-container {
+    @apply px-4 sm:px-8 md:px-16 lg:px-32 xl:px-64;
+  }
+  
+  /* Grid containers with proper spacing */
+  .option-grid {
+    @apply grid gap-3 sm:gap-4 md:gap-6 px-4 sm:px-6 md:px-8;
+  }
+  
+  .option-grid.cols-1 {
+    @apply grid-cols-1;
+  }
+  
+  .option-grid.cols-2 {
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+  
+  .option-grid.cols-3 {
+    @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
   }
 }
