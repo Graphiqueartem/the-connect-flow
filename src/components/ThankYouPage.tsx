@@ -157,7 +157,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
                 rel="noopener noreferrer"
                 className="text-white text-sm hover:underline ml-1"
               >
-                Based on <span className="font-semibold underline">456 reviews</span>
+                Based on <span className="font-semibold underline">4,556 reviews</span>
               </a>
             </div>
           </div>
