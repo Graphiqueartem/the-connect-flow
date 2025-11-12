@@ -105,7 +105,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
       {/* Header Section with confetti background */}
-      <div className="relative bg-[#FF6B8A] overflow-hidden py-6">
+      <div className="relative bg-[#FF6B8A] overflow-hidden pb-16">
         {/* Confetti Decorations */}
         <div className="absolute inset-0 opacity-60">
           <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
@@ -128,7 +128,7 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
           <div className="absolute top-11 left-[90%] w-3 h-4 bg-orange-300 -rotate-12 rounded-sm"></div>
         </div>
 
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 pt-6">
           <div className="relative z-10 flex flex-col items-center gap-4">
             {/* Logo - Transparent Style */}
             <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
@@ -136,33 +136,38 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
             </div>
             
             {/* Trustpilot Section - Horizontal Inline */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap justify-center">
               <img 
                 src={trustpilotLogo} 
                 alt="Trustpilot" 
                 className="h-6"
               />
-              <div className="flex gap-1">
+              <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-7 h-7 bg-[#00B67A] flex items-center justify-center">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="white">
+                  <div key={i} className="w-6 h-6 bg-[#00B67A] flex items-center justify-center">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="white">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
                   </div>
                 ))}
               </div>
-              <div className="bg-[#FF4E5C] px-3 py-1 rounded">
-                <a 
-                  href="https://www.trustpilot.com/review/carfinanced.co.uk" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-white text-sm font-medium hover:underline whitespace-nowrap"
-                >
-                  Based on <span className="font-bold">4,556 reviews</span>
-                </a>
-              </div>
+              <a 
+                href="https://www.trustpilot.com/review/carfinanced.co.uk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white text-sm font-medium hover:underline"
+              >
+                Based on <span className="font-bold">4,556 reviews</span>
+              </a>
             </div>
           </div>
+        </div>
+
+        {/* Concave Curve from Middle */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+          <svg className="relative block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 L0,120 L1200,120 L1200,0 Q600,80 0,0 Z" fill="white"></path>
+          </svg>
         </div>
       </div>
       
