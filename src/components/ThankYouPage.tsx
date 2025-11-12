@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import carfinancedLogoNew from "@/assets/carfinanced-logo-new.png";
+import trustpilotLogo from "@/assets/trustpilot-logo.png";
 
 interface ConfettiPieceProps {
   color: string;
@@ -102,14 +104,63 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
+      {/* Header Section */}
+      <div className="relative z-20 bg-[#FF6B8A] py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center gap-3">
+            <img 
+              src={carfinancedLogoNew} 
+              alt="Car Financed Logo" 
+              className="h-10 md:h-12"
+            />
+            <div className="flex items-center gap-2">
+              <img 
+                src={trustpilotLogo} 
+                alt="Trustpilot" 
+                className="h-5"
+              />
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5" viewBox="0 0 24 24" fill="#00B67A">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <a 
+                href="https://www.trustpilot.com/review/carfinanced.co.uk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white text-sm hover:underline ml-1"
+              >
+                Based on <span className="font-semibold underline">456 reviews</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Wavy Divider */}
+      <div className="relative z-10 h-24 bg-[#FF6B8A] overflow-hidden">
+        <svg
+          viewBox="0 0 1440 120"
+          className="absolute bottom-0 w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,120 L0,120 Z"
+            fill="#FFEB3B"
+          />
+        </svg>
+      </div>
+      
       {/* Confetti Animation */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-30">
         {confettiPieces.map((piece, index) => (
           <ConfettiPiece key={index} {...piece} />
         ))}
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-200px)] px-4 text-center -mt-12">
         <div className="max-w-2xl mx-auto">
           {/* Checkmark Circle */}
           <div className="flex justify-center mb-8">
