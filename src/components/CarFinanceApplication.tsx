@@ -1112,6 +1112,11 @@ const CarFinanceApplication = () => {
                   Next
                 </button>
               </div>
+              
+              <p className="text-gray-600 text-center text-sm">
+                By starting your quote you're agreeing to our{" "}
+                <a href="https://carfinanced.co.uk/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+              </p>
           </div>
             )}
             
@@ -1132,6 +1137,11 @@ const CarFinanceApplication = () => {
                     Submit
                   </button>
                 </div>
+                
+                <p className="text-gray-600 text-center text-sm">
+                  By starting your quote you're agreeing to our{" "}
+                  <a href="https://carfinanced.co.uk/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+                </p>
               </div>
             )}
           </div>
