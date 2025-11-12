@@ -1040,22 +1040,14 @@ const CarFinanceApplication = () => {
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
           <span className="text-white font-semibold">Trustpilot</span>
-          <div className="flex gap-0.5 ml-2">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
+          <div className="flex gap-1 ml-2">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+                </svg>
+              </div>
+            ))}
           </div>
           <span className="text-white text-sm ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
