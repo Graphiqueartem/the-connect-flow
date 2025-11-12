@@ -1024,14 +1024,12 @@ const CarFinanceApplication = () => {
 
         <div className="container mx-auto px-4">
           <div className="relative z-10 flex flex-col items-center gap-4">
-            {/* Logo */}
-            <img 
-              src={carfinancedLogoNew} 
-              alt="Car Financed Logo" 
-              className="h-10 md:h-12"
-            />
+            {/* Logo - Transparent Style */}
+            <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
+              <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
+            </div>
             
-            {/* Trustpilot Section */}
+            {/* Trustpilot Section with Boxed Stars */}
             <div className="flex items-center gap-2">
               <img 
                 src={trustpilotLogo} 
@@ -1040,9 +1038,11 @@ const CarFinanceApplication = () => {
               />
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5" viewBox="0 0 24 24" fill="#00B67A">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
+                  <div key={i} className="w-6 h-6 bg-[#00B67A] flex items-center justify-center">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </div>
                 ))}
               </div>
               <a 
@@ -1058,7 +1058,7 @@ const CarFinanceApplication = () => {
         </div>
       </div>
 
-      {/* Wavy Divider */}
+      {/* Wavy Divider with Progress Bar */}
       <div className="relative h-24 bg-[#FF6B8A] overflow-hidden">
         <svg
           viewBox="0 0 1440 120"
@@ -1068,6 +1068,31 @@ const CarFinanceApplication = () => {
           <path
             d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,120 L0,120 Z"
             fill="#FFEB3B"
+          />
+        </svg>
+        {/* Progress Bar */}
+        <svg
+          viewBox="0 0 1440 120"
+          className="absolute bottom-0 w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFD700" />
+              <stop offset="50%" stopColor="#FFC700" />
+              <stop offset="100%" stopColor="#FFB700" />
+            </linearGradient>
+            <clipPath id="progressClip">
+              <rect x="0" y="0" width={`${progressPercentage}%`} height="120" />
+            </clipPath>
+          </defs>
+          <path
+            d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60"
+            stroke="url(#progressGradient)"
+            strokeWidth="6"
+            fill="none"
+            strokeLinecap="round"
+            clipPath="url(#progressClip)"
           />
         </svg>
       </div>
