@@ -304,10 +304,10 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
         Almost done, let us know who you are?
       </h1>
       
-      <div className="max-w-4xl mx-auto space-y-8">
-        <div>
-          <p className="text-left text-foreground font-medium mb-4">Your title</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="max-w-2xl mx-auto space-y-8">
+        <div className="flex items-center justify-center gap-8">
+          <p className="text-gray-900 font-normal text-base">Your title</p>
+          <div className="flex gap-4">
             {[
               { value: "Mr", label: "Mr" },
               { value: "Mrs", label: "Mrs" },
@@ -317,7 +317,11 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
               <button
                 key={option.value}
                 onClick={() => handleTitleSelection(option.value)}
-                className={`option-button ${formData.title === option.value ? 'selected' : ''}`}
+                className={`w-16 h-16 rounded-full border-2 text-base font-normal transition-all ${
+                  formData.title === option.value 
+                    ? 'bg-gray-900 border-gray-900 text-white' 
+                    : 'bg-white border-gray-300 text-gray-900 hover:border-gray-400'
+                }`}
               >
                 {option.label}
               </button>
@@ -325,13 +329,13 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
           </div>
         </div>
         
-        <div>
+        <div className="space-y-4">
           <input
             type="text"
             placeholder="First name"
             value={formData.firstName}
             onChange={(e) => updateFormData({ firstName: e.target.value })}
-            className="address-input mb-4"
+            className="address-input"
           />
           
           <input
@@ -342,15 +346,6 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
             className="address-input"
           />
         </div>
-      </div>
-      
-      <div className="mt-12 max-w-4xl mx-auto">
-        <p className="text-muted-foreground text-sm text-center">
-          The personal information we have collected from you will be shared with fraud prevention agencies who will use it to prevent fraud and money laundering and to verify your identity. If fraud is detected, you could be refused finance{" "}
-          <a href="https://carfinanced.co.uk/privacy?_gl=1*1cbkk17*_ga*MTIwNDU0ODg5Ni4xNzU3Njc4ODIx*_ga_6ZQ951WRXK*czE3NTc3MDAzMzckbzMkZzEkdDE3NTc3MDQ4NjgkajU4JGwwJGgw" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-            privacy-policy
-          </a>.
-        </p>
       </div>
     </div>
   );
