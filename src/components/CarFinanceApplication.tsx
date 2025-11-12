@@ -1044,14 +1044,14 @@ const CarFinanceApplication = () => {
       </div>
 
       {/* Main Content with White Background */}
-      <main className="bg-white pt-12 pb-8 min-h-screen -mt-1">
-        <div className="max-w-3xl mx-auto px-6">
+      <main className="bg-white pt-12 pb-8 min-h-screen -mt-1 flex flex-col">
+        <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
 
           {/* Step Content */}
-          <div className="form-container">
+          <div className="form-container flex-grow flex flex-col">
 
             {/* Step Components - Only render the current step */}
-            <div className="text-center">
+            <div className="text-center flex-grow">
               {/* Base Steps 1-7 */}
               {currentStep === 1 && <VehicleTypeStep formData={formData} updateFormData={updateFormData} onNext={() => navigateToStep(currentStep + 1)} />}
               {currentStep === 2 && <DrivingLicenceStep formData={formData} updateFormData={updateFormData} onNext={() => navigateToStep(currentStep + 1)} />}
@@ -1097,7 +1097,7 @@ const CarFinanceApplication = () => {
 
             {/* Navigation - Hidden for step 1 as it has its own buttons */}
             {currentStep !== 1 && currentStep < getTotalSteps() && (
-            <div className="mt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+            <div className="mt-auto pt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
               <div className="flex items-center justify-center gap-4 w-full">
                 <button 
                   onClick={prevStep}
@@ -1122,7 +1122,7 @@ const CarFinanceApplication = () => {
             
             {/* Final submit button */}
             {currentStep === getTotalSteps() && (
-              <div className="mt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+              <div className="mt-auto pt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
                 <div className="flex items-center justify-center gap-4 w-full">
                   <button 
                     onClick={prevStep}
