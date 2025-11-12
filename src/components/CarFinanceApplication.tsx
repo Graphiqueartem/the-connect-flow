@@ -1057,19 +1057,34 @@ const CarFinanceApplication = () => {
           </div>
         </div>
 
-        {/* Concave Curve from Middle */}
+        {/* Inverted Convex Curve from Middle */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
           <svg className="relative block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 L0,120 L1200,120 L1200,0 Q600,80 0,0 Z" fill="white"></path>
+            <path d="M0,120 L0,0 L1200,0 L1200,120 Q600,40 0,120 Z" fill="white"></path>
           </svg>
         </div>
 
-        {/* Thin Progress Line on top of curve */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 z-10">
-          <div 
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#FFD700] via-[#FFC700] to-[#FFB700] transition-all duration-300"
-            style={{ width: `${progressPercentage}%` }}
-          />
+        {/* Progress Line along the curve */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 z-10 pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#FFD700" />
+                <stop offset="50%" stopColor="#FFC700" />
+                <stop offset="100%" stopColor="#FFB700" />
+              </linearGradient>
+              <clipPath id="progressClip">
+                <rect x="0" y="0" width={`${progressPercentage}%`} height="120" />
+              </clipPath>
+            </defs>
+            <path 
+              d="M0,120 Q600,40 1200,120" 
+              fill="none" 
+              stroke="url(#progressGradient)" 
+              strokeWidth="3"
+              clipPath="url(#progressClip)"
+            />
+          </svg>
         </div>
       </div>
 
