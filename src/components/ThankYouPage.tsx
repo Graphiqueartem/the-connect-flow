@@ -110,51 +110,37 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8">
-            Great news,{' '}
-            <span className="text-primary">your application is complete!</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            One of our finance executives will be in touch{' '}
-            <span className="underline decoration-yellow-400 decoration-4">ASAP</span>{' '}
-            to discuss your quote and the next steps.
-          </p>
-
-          <div className="bg-card border border-border rounded-lg p-8 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">What happens next?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
-                  1
-                </div>
-                <h3 className="font-semibold mb-2">Review</h3>
-                <p className="text-sm text-muted-foreground">
-                  Our team reviews your application
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
-                  2
-                </div>
-                <h3 className="font-semibold mb-2">Contact</h3>
-                <p className="text-sm text-muted-foreground">
-                  We'll call you within 24 hours
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">
-                  3
-                </div>
-                <h3 className="font-semibold mb-2">Finance</h3>
-                <p className="text-sm text-muted-foreground">
-                  Get your best finance deal
-                </p>
-              </div>
+        <div className="max-w-2xl mx-auto">
+          {/* Checkmark Circle */}
+          <div className="flex justify-center mb-8">
+            <div className="w-24 h-24 bg-[#FF6B8A] rounded-full flex items-center justify-center">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
             </div>
           </div>
-
+          
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Thank You!
+          </h1>
+          
+          <p className="text-lg md:text-xl text-gray-900 mb-3">
+            Your form has been successfully submitted.
+          </p>
+          
+          <p className="text-lg md:text-xl text-gray-900">
+            We appreciate your enquiry, and we will get back to you shortly.
+          </p>
+        </div>
+        
+        {/* Privacy Policy Text at Bottom */}
+        <div className="absolute bottom-8 left-0 right-0 px-4">
+          <p className="text-muted-foreground text-sm text-center max-w-3xl mx-auto">
+            The personal information we have collected from you will be shared with fraud prevention agencies who will use it to prevent fraud and money laundering and to verify your identity. If fraud is detected, you could be refused finance{" "}
+            <a href="https://carfinanced.co.uk/privacy?_gl=1*1cbkk17*_ga*MTIwNDU0ODg5Ni4xNzU3Njc4ODIx*_ga_6ZQ951WRXK*czE3NTc3MDAzMzckbzMkZzEkdDE3NTc3MDQ4NjgkajU4JGwwJGgw" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              privacy policy
+            </a>.
+          </p>
         </div>
       </div>
 
