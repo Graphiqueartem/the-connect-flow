@@ -105,37 +105,37 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
       {/* Header Section with confetti background */}
-      <div className="relative bg-[#FF6B8A] overflow-hidden pb-16">
-        {/* Confetti Decorations */}
-        <div className="absolute inset-0 opacity-60">
-          <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-12 left-[15%] w-4 h-4 bg-yellow-300 rotate-12 rounded-sm"></div>
-          <div className="absolute top-6 left-[25%] w-2 h-6 bg-green-400 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-16 left-[35%] w-3 h-3 bg-purple-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-10 left-[45%] w-2 h-8 bg-pink-300 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-14 left-[55%] w-4 h-4 bg-orange-400 rotate-12 rounded-sm"></div>
-          <div className="absolute top-8 left-[65%] w-3 h-6 bg-cyan-400 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-12 left-[75%] w-2 h-4 bg-red-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-6 left-[85%] w-4 h-8 bg-indigo-400 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-16 left-[95%] w-2 h-3 bg-lime-400 rotate-12 rounded-sm"></div>
+      <div className="relative bg-[#FF6B8A] overflow-hidden pb-20">
+        {/* Confetti Decorations - More prominent */}
+        <div className="absolute inset-0">
+          <div className="absolute top-8 left-[5%] w-4 h-10 bg-blue-400 rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-12 left-[15%] w-5 h-5 bg-yellow-300 rotate-12 rounded-sm shadow-lg"></div>
+          <div className="absolute top-6 left-[25%] w-3 h-8 bg-green-400 -rotate-12 rounded-sm shadow-lg"></div>
+          <div className="absolute top-16 left-[35%] w-4 h-4 bg-purple-400 rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-10 left-[45%] w-3 h-10 bg-pink-300 -rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-14 left-[55%] w-5 h-5 bg-orange-400 rotate-12 rounded-sm shadow-lg"></div>
+          <div className="absolute top-8 left-[65%] w-4 h-8 bg-cyan-400 -rotate-12 rounded-sm shadow-lg"></div>
+          <div className="absolute top-12 left-[75%] w-3 h-5 bg-red-400 rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-6 left-[85%] w-5 h-10 bg-indigo-400 -rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-16 left-[95%] w-3 h-4 bg-lime-400 rotate-12 rounded-sm shadow-lg"></div>
           
           {/* Additional confetti for density */}
-          <div className="absolute top-4 left-[10%] w-2 h-4 bg-yellow-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-18 left-[20%] w-3 h-3 bg-blue-300 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-7 left-[40%] w-2 h-5 bg-green-300 rotate-12 rounded-sm"></div>
-          <div className="absolute top-15 left-[60%] w-4 h-3 bg-pink-400 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-5 left-[80%] w-2 h-6 bg-purple-300 rotate-45 rounded-sm"></div>
-          <div className="absolute top-11 left-[90%] w-3 h-4 bg-orange-300 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-4 left-[10%] w-3 h-5 bg-yellow-400 rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-18 left-[20%] w-4 h-4 bg-blue-300 -rotate-12 rounded-sm shadow-lg"></div>
+          <div className="absolute top-7 left-[40%] w-3 h-7 bg-green-300 rotate-12 rounded-sm shadow-lg"></div>
+          <div className="absolute top-15 left-[60%] w-5 h-4 bg-pink-400 -rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-5 left-[80%] w-3 h-8 bg-purple-300 rotate-45 rounded-sm shadow-lg"></div>
+          <div className="absolute top-11 left-[90%] w-4 h-5 bg-orange-300 -rotate-12 rounded-sm shadow-lg"></div>
         </div>
 
         <div className="container mx-auto px-4 pt-6">
           <div className="relative z-10 flex flex-col items-center gap-4">
-            {/* Logo - Transparent Style */}
-            <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
+            {/* Logo - White border pill */}
+            <div className="bg-transparent border-3 border-white rounded-full px-8 py-2.5">
               <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
             </div>
             
-            {/* Trustpilot Section - Horizontal Inline */}
+            {/* Trustpilot Section - All white text */}
             <div className="flex items-center gap-2 flex-wrap justify-center">
               <img 
                 src={trustpilotLogo} 
@@ -157,16 +157,16 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
                 rel="noopener noreferrer"
                 className="text-white text-sm font-medium hover:underline"
               >
-                Based on <span className="font-bold">4,556 reviews</span>
+                Based on <span className="font-bold underline">456 reviews</span>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Inverted Convex Curve from Middle */}
+        {/* Smooth Convex Wave Curve */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg className="relative block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,120 L0,0 L1200,0 L1200,120 Q600,40 0,120 Z" fill="white"></path>
+          <svg className="relative block w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,120 L0,0 L1200,0 L1200,120 Q600,20 0,120 Z" fill="white"></path>
           </svg>
         </div>
       </div>
