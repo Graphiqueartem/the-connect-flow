@@ -104,68 +104,57 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
-      {/* Header Section with confetti background */}
-      <div className="relative bg-[#FF6B8A] overflow-hidden pb-16">
-        {/* Confetti Decorations */}
-        <div className="absolute inset-0">
-          <div className="absolute top-8 left-[5%] w-4 h-10 bg-blue-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-12 left-[15%] w-5 h-5 bg-yellow-300 rotate-12 rounded-sm"></div>
-          <div className="absolute top-6 left-[25%] w-3 h-8 bg-green-400 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-16 left-[35%] w-4 h-4 bg-purple-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-10 left-[45%] w-3 h-10 bg-pink-300 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-14 left-[55%] w-5 h-5 bg-orange-400 rotate-12 rounded-sm"></div>
-          <div className="absolute top-8 left-[65%] w-4 h-8 bg-cyan-400 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-12 left-[75%] w-3 h-5 bg-red-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-6 left-[85%] w-5 h-10 bg-indigo-400 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-16 left-[95%] w-3 h-4 bg-lime-400 rotate-12 rounded-sm"></div>
-          
-          {/* Additional confetti */}
-          <div className="absolute top-4 left-[10%] w-3 h-5 bg-yellow-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-18 left-[20%] w-4 h-4 bg-blue-300 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-7 left-[40%] w-3 h-7 bg-green-300 rotate-12 rounded-sm"></div>
-          <div className="absolute top-15 left-[60%] w-5 h-4 bg-pink-400 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-5 left-[80%] w-3 h-8 bg-purple-300 rotate-45 rounded-sm"></div>
-          <div className="absolute top-11 left-[90%] w-4 h-5 bg-orange-300 -rotate-12 rounded-sm"></div>
-        </div>
-
-        <div className="container mx-auto px-4 pt-4 pb-2">
-          <div className="relative z-10 flex flex-col items-center gap-3">
-            {/* Logo - White text with border */}
-            <div className="border-2 border-white rounded-full px-6 py-1.5">
-              <span className="text-white font-bold text-lg tracking-wide">carfinanced</span>
-            </div>
-            
-            {/* Trustpilot Section */}
-            <div className="flex items-center gap-2 flex-wrap justify-center bg-white px-4 py-1.5 rounded">
-              <span className="text-gray-700 text-xs font-medium">Review us on</span>
+      {/* Header Section */}
+      <div className="relative z-20 bg-[#FF6B8A] py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center gap-3">
+            <img 
+              src={carfinancedLogoNew} 
+              alt="Car Financed Logo" 
+              className="h-10 md:h-12"
+            />
+            <div className="flex items-center gap-2">
               <img 
                 src={trustpilotLogo} 
                 alt="Trustpilot" 
-                className="h-4"
+                className="h-5"
               />
-              <div className="flex gap-0.5">
+              <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
-                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="white">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  </div>
+                  <svg key={i} className="w-5 h-5" viewBox="0 0 24 24" fill="#00B67A">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
                 ))}
               </div>
+              <a 
+                href="https://www.trustpilot.com/review/carfinanced.co.uk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white text-sm hover:underline ml-1"
+              >
+                Based on <span className="font-semibold underline">456 reviews</span>
+              </a>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Smooth Wave Curve */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg className="relative block w-full h-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
-            <path d="M0,120 L0,0 L1440,0 L1440,120 Q720,30 0,120 Z" fill="white"></path>
-          </svg>
-        </div>
+      {/* Wavy Divider */}
+      <div className="relative z-10 h-24 bg-[#FF6B8A] overflow-hidden">
+        <svg
+          viewBox="0 0 1440 120"
+          className="absolute bottom-0 w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,120 L0,120 Z"
+            fill="#FFEB3B"
+          />
+        </svg>
       </div>
       
-      {/* Confetti Animation - Full screen */}
-      <div className="fixed inset-0 pointer-events-none z-50">
+      {/* Confetti Animation */}
+      <div className="absolute inset-0 pointer-events-none z-30">
         {confettiPieces.map((piece, index) => (
           <ConfettiPiece key={index} {...piece} />
         ))}

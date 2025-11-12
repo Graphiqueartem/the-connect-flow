@@ -998,81 +998,97 @@ const CarFinanceApplication = () => {
 
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
-      {/* Pink Header with Confetti Background */}
-      <div className="relative bg-[#FF6B8A] overflow-hidden pb-16">
+      {/* Pink Gradient Header with Confetti Background - Matches Reference */}
+      <div className="relative bg-gradient-to-br from-[#FF6B8A] via-[#FF7A94] to-[#FF8FA0] overflow-hidden">
         {/* Confetti Decorations */}
-        <div className="absolute inset-0">
-          <div className="absolute top-8 left-[5%] w-4 h-10 bg-blue-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-12 left-[15%] w-5 h-5 bg-yellow-300 rotate-12 rounded-sm"></div>
-          <div className="absolute top-6 left-[25%] w-3 h-8 bg-green-400 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-16 left-[35%] w-4 h-4 bg-purple-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-10 left-[45%] w-3 h-10 bg-pink-300 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-14 left-[55%] w-5 h-5 bg-orange-400 rotate-12 rounded-sm"></div>
-          <div className="absolute top-8 left-[65%] w-4 h-8 bg-cyan-400 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-12 left-[75%] w-3 h-5 bg-red-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-6 left-[85%] w-5 h-10 bg-indigo-400 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-16 left-[95%] w-3 h-4 bg-lime-400 rotate-12 rounded-sm"></div>
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-12 left-[15%] w-4 h-4 bg-yellow-300 rotate-12 rounded-sm"></div>
+          <div className="absolute top-6 left-[25%] w-2 h-6 bg-green-400 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-16 left-[35%] w-3 h-3 bg-purple-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-10 left-[45%] w-2 h-8 bg-pink-300 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-14 left-[55%] w-4 h-4 bg-orange-400 rotate-12 rounded-sm"></div>
+          <div className="absolute top-8 left-[65%] w-3 h-6 bg-cyan-400 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-12 left-[75%] w-2 h-4 bg-red-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-6 left-[85%] w-4 h-8 bg-indigo-400 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-16 left-[95%] w-2 h-3 bg-lime-400 rotate-12 rounded-sm"></div>
           
-          {/* Additional confetti */}
-          <div className="absolute top-4 left-[10%] w-3 h-5 bg-yellow-400 rotate-45 rounded-sm"></div>
-          <div className="absolute top-18 left-[20%] w-4 h-4 bg-blue-300 -rotate-12 rounded-sm"></div>
-          <div className="absolute top-7 left-[40%] w-3 h-7 bg-green-300 rotate-12 rounded-sm"></div>
-          <div className="absolute top-15 left-[60%] w-5 h-4 bg-pink-400 -rotate-45 rounded-sm"></div>
-          <div className="absolute top-5 left-[80%] w-3 h-8 bg-purple-300 rotate-45 rounded-sm"></div>
-          <div className="absolute top-11 left-[90%] w-4 h-5 bg-orange-300 -rotate-12 rounded-sm"></div>
+          {/* Additional confetti for density */}
+          <div className="absolute top-4 left-[10%] w-2 h-4 bg-yellow-400 rotate-45 rounded-sm"></div>
+          <div className="absolute top-18 left-[20%] w-3 h-3 bg-blue-300 -rotate-12 rounded-sm"></div>
+          <div className="absolute top-7 left-[40%] w-2 h-5 bg-green-300 rotate-12 rounded-sm"></div>
+          <div className="absolute top-15 left-[60%] w-4 h-3 bg-pink-400 -rotate-45 rounded-sm"></div>
+          <div className="absolute top-5 left-[80%] w-2 h-6 bg-purple-300 rotate-45 rounded-sm"></div>
+          <div className="absolute top-11 left-[90%] w-3 h-4 bg-orange-300 -rotate-12 rounded-sm"></div>
         </div>
 
-        <div className="container mx-auto px-4 pt-4 pb-2">
-          <div className="relative z-10 flex flex-col items-center gap-3">
-            {/* Logo - White text with border */}
-            <div className="border-2 border-white rounded-full px-6 py-1.5">
-              <span className="text-white font-bold text-lg tracking-wide">carfinanced</span>
+        {/* Logo Centered */}
+        <div className="relative z-10 pt-8 pb-4 px-6 text-center">
+          <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
+            <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
+              <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
             </div>
-            
-            {/* Trustpilot Section */}
-            <div className="flex items-center gap-2 flex-wrap justify-center bg-white px-4 py-1.5 rounded">
-              <span className="text-gray-700 text-xs font-medium">Review us on</span>
-              <img 
-                src={trustpilotLogo} 
-                alt="Trustpilot" 
-                className="h-4"
-              />
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
-                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="white">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
 
-        {/* Smooth Wave Curve */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg className="relative block w-full h-20" viewBox="0 0 1440 120" preserveAspectRatio="none">
-            <path d="M0,120 L0,0 L1440,0 L1440,120 Q720,30 0,120 Z" fill="white"></path>
+        {/* Trustpilot Stars */}
+        <div className="relative z-10 pb-12 px-6 flex items-center justify-center gap-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
+          <span className="text-white font-semibold">Trustpilot</span>
+          <div className="flex gap-0.5 ml-2">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
+            </svg>
+          </div>
+          <span className="text-white text-sm ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
-        {/* Yellow Progress Line on Left Edge */}
-        <div className="absolute bottom-0 left-0 h-20 z-10" style={{ width: `${progressPercentage}%` }}>
-          <svg className="w-full h-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        {/* Wavy Bottom Edge */}
+        <div className="relative" style={{ marginTop: '40px' }}>
+          <svg className="w-full h-auto" style={{ display: 'block', transform: 'translateY(1px)' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,40 Q360,10 720,40 T1440,40 L1440,100 L0,100 Z" fill="white"/>
+          </svg>
+          
+          {/* Yellow Progress Bar along the arch */}
+          <svg className="w-full h-auto absolute bottom-0 left-0" style={{ display: 'block' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
+                <stop offset="50%" style={{ stopColor: '#FFC700', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: '#FFB700', stopOpacity: 1 }} />
+              </linearGradient>
+              <clipPath id="progressClip">
+                <rect x="0" y="0" width={`${progressPercentage}%`} height="100" />
+              </clipPath>
+            </defs>
             <path 
-              d="M0,120 Q720,30 1440,120" 
-              fill="none" 
-              stroke="#FFD700" 
-              strokeWidth="4"
-              vectorEffect="non-scaling-stroke"
+              d="M0,40 Q360,10 720,40 T1440,40" 
+              stroke="url(#yellowGradient)" 
+              strokeWidth="6" 
+              fill="none"
+              strokeLinecap="round"
+              clipPath="url(#progressClip)"
             />
           </svg>
         </div>
       </div>
 
       {/* Main Content with White Background */}
-      <main className="bg-white pt-8 pb-8 min-h-screen flex flex-col">
+      <main className="bg-white pt-12 pb-8 min-h-screen -mt-1 flex flex-col">
         <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
 
           {/* Step Content */}
@@ -1190,71 +1206,69 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
   };
 
   return (
-    <div className="flex-grow flex flex-col">
-      <div className="flex-grow">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 px-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-          What would you like a finance quote for?
-        </h1>
-        
-        {/* Vehicle Selection Buttons */}
-        <div className="flex flex-row justify-center items-stretch gap-4 md:gap-6 max-w-2xl mx-auto px-4">
-          {[
-            { 
-              value: "car", 
-              label: "Car",
-              icon: (
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 28H6V24L10 16H38L42 24V28H38M10 28V32M10 28H38M38 28V32M14 32C14 33.1046 13.1046 34 12 34C10.8954 34 10 33.1046 10 32M14 32C14 30.8954 13.1046 30 12 30C10.8954 30 10 30.8954 10 32M38 32C38 33.1046 37.1046 34 36 34C34.8954 34 34 33.1046 34 32M38 32C38 30.8954 37.1046 30 36 30C34.8954 30 34 30.8954 34 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )
-            },
-            { 
-              value: "van", 
-              label: "Van",
-              icon: (
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 28H4V22L8 14H32V28M8 28V32M8 28H32M32 28V14M32 28V32M32 14H40L44 22V28H40M40 28V32M12 32C12 33.1046 11.1046 34 10 34C8.89543 34 8 33.1046 8 32M12 32C12 30.8954 11.1046 30 10 30C8.89543 30 8 30.8954 8 32M36 32C36 33.1046 35.1046 34 34 34C32.8954 34 32 33.1046 32 32M36 32C36 30.8954 35.1046 30 34 30C32.8954 30 32 30.8954 32 32M40 32C40 33.1046 39.1046 34 38 34C36.8954 34 36 33.1046 36 32M40 32C40 30.8954 39.1046 30 38 30C36.8954 30 36 30.8954 36 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )
-            },
-            { 
-              value: "bike", 
-              label: "Bike",
-              icon: (
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="32" r="6" stroke="currentColor" strokeWidth="2"/>
-                  <circle cx="36" cy="32" r="6" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M12 32L20 16H24L28 20M36 32L28 20M28 20H32M18 12H24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )
-            },
-          ].map((option) => (
-            <button
-              key={option.value}
-              onClick={() => handleSelection(option.value)}
-              className={`
-                flex flex-col items-center justify-center gap-3 
-                min-w-[120px] sm:min-w-[140px] md:min-w-[160px] 
-                aspect-square
-                rounded-2xl border-2 
-                transition-all duration-200
-                ${formData.vehicleType === option.value 
-                  ? 'bg-[#C8E6C9] border-[#81C784] text-gray-900' 
-                  : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
-                }
-              `}
-            >
-              <div className={formData.vehicleType === option.value ? 'text-gray-900' : 'text-gray-600'}>
-                {option.icon}
-              </div>
-              <span className="text-base font-semibold">{option.label}</span>
-            </button>
-          ))}
-        </div>
+    <div className="py-4">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 px-4" style={{ fontFamily: 'Inter, sans-serif' }}>
+        What would you like a finance quote for?
+      </h1>
+      
+      {/* Vehicle Selection Buttons */}
+      <div className="flex flex-row justify-center items-stretch gap-4 md:gap-6 max-w-2xl mx-auto mb-32 px-4">
+        {[
+          { 
+            value: "car", 
+            label: "Car",
+            icon: (
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 28H6V24L10 16H38L42 24V28H38M10 28V32M10 28H38M38 28V32M14 32C14 33.1046 13.1046 34 12 34C10.8954 34 10 33.1046 10 32M14 32C14 30.8954 13.1046 30 12 30C10.8954 30 10 30.8954 10 32M38 32C38 33.1046 37.1046 34 36 34C34.8954 34 34 33.1046 34 32M38 32C38 30.8954 37.1046 30 36 30C34.8954 30 34 30.8954 34 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )
+          },
+          { 
+            value: "van", 
+            label: "Van",
+            icon: (
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 28H4V22L8 14H32V28M8 28V32M8 28H32M32 28V14M32 28V32M32 14H40L44 22V28H40M40 28V32M12 32C12 33.1046 11.1046 34 10 34C8.89543 34 8 33.1046 8 32M12 32C12 30.8954 11.1046 30 10 30C8.89543 30 8 30.8954 8 32M36 32C36 33.1046 35.1046 34 34 34C32.8954 34 32 33.1046 32 32M36 32C36 30.8954 35.1046 30 34 30C32.8954 30 32 30.8954 32 32M40 32C40 33.1046 39.1046 34 38 34C36.8954 34 36 33.1046 36 32M40 32C40 30.8954 39.1046 30 38 30C36.8954 30 36 30.8954 36 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )
+          },
+          { 
+            value: "bike", 
+            label: "Bike",
+            icon: (
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="32" r="6" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="36" cy="32" r="6" stroke="currentColor" strokeWidth="2"/>
+                <path d="M12 32L20 16H24L28 20M36 32L28 20M28 20H32M18 12H24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )
+          },
+        ].map((option) => (
+          <button
+            key={option.value}
+            onClick={() => handleSelection(option.value)}
+            className={`
+              flex flex-col items-center justify-center gap-3 
+              min-w-[120px] sm:min-w-[140px] md:min-w-[160px] 
+              aspect-square
+              rounded-2xl border-2 
+              transition-all duration-200
+              ${formData.vehicleType === option.value 
+                ? 'bg-[#C8E6C9] border-[#81C784] text-gray-900' 
+                : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
+              }
+            `}
+          >
+            <div className={formData.vehicleType === option.value ? 'text-gray-900' : 'text-gray-600'}>
+              {option.icon}
+            </div>
+            <span className="text-base font-semibold">{option.label}</span>
+          </button>
+        ))}
       </div>
 
-      {/* Bottom Navigation - Positioned like other pages */}
-      <div className="mt-auto pt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+      {/* Bottom Navigation */}
+      <div className="flex flex-col items-center gap-6 max-w-md mx-auto px-4">
         <div className="flex items-center justify-center gap-4 w-full">
           <button 
             onClick={() => window.location.href = 'https://carfinanced.co.uk/'}
