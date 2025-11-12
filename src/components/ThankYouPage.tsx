@@ -130,14 +130,12 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
         <div className="container mx-auto px-4">
           <div className="relative z-10 flex flex-col items-center gap-4">
-            {/* Logo */}
-            <img 
-              src={carfinancedLogoNew} 
-              alt="Car Financed Logo" 
-              className="h-10 md:h-12"
-            />
+            {/* Logo - Transparent Style */}
+            <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
+              <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
+            </div>
             
-            {/* Trustpilot Section */}
+            {/* Trustpilot Section with Boxed Stars */}
             <div className="flex items-center gap-2">
               <img 
                 src={trustpilotLogo} 
@@ -146,9 +144,11 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
               />
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5" viewBox="0 0 24 24" fill="#00B67A">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
+                  <div key={i} className="w-6 h-6 bg-[#00B67A] flex items-center justify-center">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </div>
                 ))}
               </div>
               <a 
