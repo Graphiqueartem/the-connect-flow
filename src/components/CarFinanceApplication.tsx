@@ -1473,20 +1473,16 @@ const AddressStep = ({ formData, updateFormData }: { formData: FormData; updateF
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-6">
-        Next, where do you live? 🏠
+      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
+        Next, where do you live?
       </h1>
-      
-      <p className="text-muted-foreground text-base mb-12">
-        Just start typing your postcode or address..
-      </p>
       
       <div className="max-w-2xl mx-auto">
         <AddressAutocomplete
           value={formData.address}
           onChange={handleAddressChange}
           className="address-input"
-          placeholder="e.g. 'M24 1SL' or 'Moston Road'"
+          placeholder="Just start typing your postcode or address.."
         />
       </div>
     </div>
@@ -1505,10 +1501,10 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
   return (
     <div>
       <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
-        Ok, Which best describes you? 🔍
+        Ok, Which best describes you?
       </h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
         {[
           { value: "private-tenant", label: "Private tenant" },
           { value: "home-owner", label: "Home owner" },
@@ -1518,7 +1514,11 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
           <button
             key={option.value}
             onClick={() => handleSelection(option.value)}
-            className={`option-button ${formData.housingSituation === option.value ? 'selected' : ''}`}
+            className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              formData.housingSituation === option.value 
+                ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
+                : 'bg-background border-border text-foreground hover:border-foreground/30'
+            }`}
           >
             {option.label}
           </button>
