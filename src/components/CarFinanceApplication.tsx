@@ -1540,8 +1540,8 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 
 const AddressDurationStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-foreground mb-8">
-      How long have you lived at {formData.address}? ⏳
+    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
+      How long have you lived at {formData.address}?
     </h1>
     
     <p className="text-muted-foreground text-base mb-12">
@@ -1703,32 +1703,11 @@ const PreviousAddressDurationStep = ({ formData, updateFormData, addressIndex }:
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-8">
-        How long did you live at {address}? ⏳
+      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
+        How long did you live at {address}?
       </h1>
       
       <div className="max-w-2xl mx-auto mb-8">
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-blue-800 font-medium">Address History Progress</span>
-            <span className="text-blue-600 text-sm">
-              {Math.floor(getTotalAddressTime() / 12)} years, {getTotalAddressTime() % 12} months
-            </span>
-          </div>
-          <div className="w-full bg-blue-200 rounded-full h-2">
-            <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300" 
-              style={{ width: `${Math.min((getTotalAddressTime() / 36) * 100, 100)}%` }}
-            ></div>
-          </div>
-          <p className="text-blue-700 text-sm mt-2">
-            {getTotalAddressTime() >= 36 
-              ? "✅ You have enough address history!" 
-              : `Need ${36 - getTotalAddressTime()} more months to reach 3 years`
-            }
-          </p>
-        </div>
-        
         <p className="text-muted-foreground text-base">
           Lenders require 3 years of complete address history.
         </p>
