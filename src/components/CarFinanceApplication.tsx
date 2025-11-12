@@ -1071,30 +1071,6 @@ const CarFinanceApplication = () => {
           />
         </svg>
       </div>
-          
-          {/* Yellow Progress Bar along the arch */}
-          <svg className="w-full h-auto absolute bottom-0 left-0" style={{ display: 'block' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
-                <stop offset="50%" style={{ stopColor: '#FFC700', stopOpacity: 1 }} />
-                <stop offset="100%" style={{ stopColor: '#FFB700', stopOpacity: 1 }} />
-              </linearGradient>
-              <clipPath id="progressClip">
-                <rect x="0" y="0" width={`${progressPercentage}%`} height="100" />
-              </clipPath>
-            </defs>
-            <path 
-              d="M0,40 Q360,10 720,40 T1440,40" 
-              stroke="url(#yellowGradient)" 
-              strokeWidth="6" 
-              fill="none"
-              strokeLinecap="round"
-              clipPath="url(#progressClip)"
-            />
-          </svg>
-        </div>
-      </div>
 
       {/* Main Content with White Background */}
       <main className="bg-white pt-12 pb-8 min-h-screen -mt-1 flex flex-col">
