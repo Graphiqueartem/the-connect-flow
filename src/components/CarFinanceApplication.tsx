@@ -999,9 +999,9 @@ const CarFinanceApplication = () => {
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
       {/* Pink Gradient Header with Confetti Background - Matches Reference */}
-      <div className="relative bg-gradient-to-br from-[#FF6B8A] via-[#FF7A94] to-[#FF8FA0] overflow-hidden">
+      <div className="relative bg-[#FF6B8A] overflow-hidden py-6">
         {/* Confetti Decorations */}
-        <div className="absolute inset-0 opacity-40">
+        <div className="absolute inset-0 opacity-60">
           <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
           <div className="absolute top-12 left-[15%] w-4 h-4 bg-yellow-300 rotate-12 rounded-sm"></div>
           <div className="absolute top-6 left-[25%] w-2 h-6 bg-green-400 -rotate-12 rounded-sm"></div>
@@ -1022,46 +1022,55 @@ const CarFinanceApplication = () => {
           <div className="absolute top-11 left-[90%] w-3 h-4 bg-orange-300 -rotate-12 rounded-sm"></div>
         </div>
 
-        {/* Logo Centered */}
-        <div className="relative z-10 pt-8 pb-4 px-6 text-center">
-          <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
-            <div className="bg-white/10 backdrop-blur-sm border-2 border-white rounded-full px-8 py-2.5">
-              <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
+        <div className="container mx-auto px-4">
+          <div className="relative z-10 flex flex-col items-center gap-4">
+            {/* Logo */}
+            <img 
+              src={carfinancedLogoNew} 
+              alt="Car Financed Logo" 
+              className="h-10 md:h-12"
+            />
+            
+            {/* Trustpilot Section */}
+            <div className="flex items-center gap-2">
+              <img 
+                src={trustpilotLogo} 
+                alt="Trustpilot" 
+                className="h-5"
+              />
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5" viewBox="0 0 24 24" fill="#00B67A">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              <a 
+                href="https://www.trustpilot.com/review/carfinanced.co.uk" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white text-sm hover:underline ml-1"
+              >
+                Based on <span className="font-semibold underline">456 reviews</span>
+              </a>
             </div>
-          </a>
-        </div>
-
-        {/* Trustpilot Stars */}
-        <div className="relative z-10 pb-12 px-6 flex items-center justify-center gap-2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-          </svg>
-          <span className="text-white font-semibold">Trustpilot</span>
-          <div className="flex gap-0.5 ml-2">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="#00B67A" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
-            </svg>
           </div>
-          <span className="text-white text-sm ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
+      </div>
 
-        {/* Wavy Bottom Edge */}
-        <div className="relative" style={{ marginTop: '40px' }}>
-          <svg className="w-full h-auto" style={{ display: 'block', transform: 'translateY(1px)' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,40 Q360,10 720,40 T1440,40 L1440,100 L0,100 Z" fill="white"/>
-          </svg>
+      {/* Wavy Divider */}
+      <div className="relative h-24 bg-[#FF6B8A] overflow-hidden">
+        <svg
+          viewBox="0 0 1440 120"
+          className="absolute bottom-0 w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,120 L0,120 Z"
+            fill="#FFEB3B"
+          />
+        </svg>
+      </div>
           
           {/* Yellow Progress Bar along the arch */}
           <svg className="w-full h-auto absolute bottom-0 left-0" style={{ display: 'block' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
