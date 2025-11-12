@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FormData, Address } from "../CarFinanceForm";
 import { Home, MapPin, Plus, Trash2, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
+import AddressAutocomplete from "@/components/AddressAutocomplete";
 
 interface AddressHistoryStepProps {
   formData: FormData;
@@ -103,13 +104,46 @@ const AddressHistoryStep = ({ formData, updateFormData, errors }: AddressHistory
           <h4 className="text-lg font-medium">Current Address</h4>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <Label htmlFor="currentLine1" className="text-base font-medium">
+              Search Address *
+            </Label>
+            <AddressAutocomplete
+              value={formData.currentAddress.line1}
+              onChange={(value, details) => {
+                if (details) {
+                  updateFormData({
+                    currentAddress: {
+                      ...formData.currentAddress,
+                      line1: details.line1 || value,
+                      line2: details.line2 || formData.currentAddress.line2,
+                      city: details.city || formData.currentAddress.city,
+                      postcode: details.postcode || formData.currentAddress.postcode
+                    }
+                  });
+                } else {
+                  updateFormData({
+                    currentAddress: { ...formData.currentAddress, line1: value }
+                  });
+                }
+              }}
+              placeholder="Start typing your address..."
+              className="h-12 w-full border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            />
+            {errors["currentAddress.line1"] && (
+              <p className="text-destructive text-sm mt-1">{errors["currentAddress.line1"]}</p>
+            )}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="currentLine1Manual" className="text-base font-medium">
               Address Line 1 *
             </Label>
             <Input
-              id="currentLine1"
+              id="currentLine1Manual"
               placeholder="123 Main Street"
               value={formData.currentAddress.line1}
               onChange={(e) => updateFormData({
@@ -117,9 +151,6 @@ const AddressHistoryStep = ({ formData, updateFormData, errors }: AddressHistory
               })}
               className="h-12"
             />
-            {errors["currentAddress.line1"] && (
-              <p className="text-destructive text-sm mt-1">{errors["currentAddress.line1"]}</p>
-            )}
           </div>
 
           <div className="space-y-2">
@@ -273,21 +304,46 @@ const AddressHistoryStep = ({ formData, updateFormData, errors }: AddressHistory
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 mb-4">
             <div className="space-y-2">
               <Label htmlFor={`previousLine1-${index}`} className="text-base font-medium">
+                Search Address *
+              </Label>
+              <AddressAutocomplete
+                value={address.line1}
+                onChange={(value, details) => {
+                  if (details) {
+                    updatePreviousAddress(index, {
+                      line1: details.line1 || value,
+                      line2: details.line2 || address.line2,
+                      city: details.city || address.city,
+                      postcode: details.postcode || address.postcode
+                    });
+                  } else {
+                    updatePreviousAddress(index, { line1: value });
+                  }
+                }}
+                placeholder="Start typing your address..."
+                className="h-12 w-full border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              />
+              {errors[`previousAddress.${index}.line1`] && (
+                <p className="text-destructive text-sm mt-1">{errors[`previousAddress.${index}.line1`]}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor={`previousLine1Manual-${index}`} className="text-base font-medium">
                 Address Line 1 *
               </Label>
               <Input
-                id={`previousLine1-${index}`}
+                id={`previousLine1Manual-${index}`}
                 placeholder="456 Previous Street"
                 value={address.line1}
                 onChange={(e) => updatePreviousAddress(index, { line1: e.target.value })}
                 className="h-12"
               />
-              {errors[`previousAddress.${index}.line1`] && (
-                <p className="text-destructive text-sm mt-1">{errors[`previousAddress.${index}.line1`]}</p>
-              )}
             </div>
 
             <div className="space-y-2">
