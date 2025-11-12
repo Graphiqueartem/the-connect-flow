@@ -1024,32 +1024,32 @@ const CarFinanceApplication = () => {
         </div>
 
         {/* Logo Centered */}
-        <div className="relative z-10 pt-8 pb-4 px-6 text-center">
+        <div className="relative z-10 pt-6 sm:pt-8 pb-3 sm:pb-4 px-4 sm:px-6 text-center">
           <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
             <img 
               src={carfinancedHeaderLogo} 
               alt="Car Financed Logo" 
-              className="h-8 md:h-10"
+              className="h-7 sm:h-8 md:h-10"
             />
           </a>
         </div>
 
         {/* Trustpilot Stars */}
-        <div className="relative z-10 pb-9 px-6 flex items-center justify-center gap-2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <div className="relative z-10 pb-7 sm:pb-9 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="sm:w-6 sm:h-6">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
-          <span className="text-white font-semibold">Trustpilot</span>
-          <div className="flex gap-1 ml-2">
+          <span className="text-white font-semibold text-sm sm:text-base">Trustpilot</span>
+          <div className="flex gap-0.5 sm:gap-1 ml-1 sm:ml-2">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <div key={i} className="w-4 h-4 sm:w-5 sm:h-5 bg-[#00B67A] flex items-center justify-center">
+                <svg width="11" height="11" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg" className="sm:w-3.5 sm:h-3.5">
                   <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
                 </svg>
               </div>
             ))}
           </div>
-          <span className="text-white text-sm ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
+          <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
         {/* Wavy Bottom Edge */}

@@ -83,18 +83,18 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
 
     sendToWebhook();
 
-    // Generate confetti pieces that fall from top
+    // Generate confetti pieces with popper-style animation
     const pieces: ConfettiPieceProps[] = [];
     const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9'];
     
-    // Create confetti pieces that fall from the top
+    // Create confetti pieces with faster, popper-style animation
     for (let i = 0; i < 150; i++) {
       pieces.push({
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: Math.random() * 8 + 4,
+        size: Math.random() * 10 + 5,
         left: Math.random() * 100,
-        animationDelay: Math.random() * 3,
-        animationDuration: Math.random() * 3 + 3,
+        animationDelay: Math.random() * 0.3, // Much faster start
+        animationDuration: Math.random() * 1.5 + 1, // Faster fall (1-2.5s instead of 3-6s)
         rotation: Math.random() * 360,
       });
     }
@@ -129,32 +129,32 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
         </div>
 
         {/* Logo Centered */}
-        <div className="relative z-10 pt-8 pb-4 px-6 text-center">
+        <div className="relative z-10 pt-6 sm:pt-8 pb-3 sm:pb-4 px-4 sm:px-6 text-center">
           <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
             <img 
               src={carfinancedHeaderLogo} 
               alt="Car Financed Logo" 
-              className="h-8 md:h-10"
+              className="h-7 sm:h-8 md:h-10"
             />
           </a>
         </div>
 
         {/* Trustpilot Stars */}
-        <div className="relative z-10 pb-9 px-6 flex items-center justify-center gap-2">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <div className="relative z-10 pb-7 sm:pb-9 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="sm:w-6 sm:h-6">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
-          <span className="text-white font-semibold">Trustpilot</span>
-          <div className="flex gap-1 ml-2">
+          <span className="text-white font-semibold text-sm sm:text-base">Trustpilot</span>
+          <div className="flex gap-0.5 sm:gap-1 ml-1 sm:ml-2">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="w-5 h-5 bg-[#00B67A] flex items-center justify-center">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <div key={i} className="w-4 h-4 sm:w-5 sm:h-5 bg-[#00B67A] flex items-center justify-center">
+                <svg width="11" height="11" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg" className="sm:w-3.5 sm:h-3.5">
                   <path d="M10 2L12.09 6.26L17 6.77L13.5 10.14L14.18 15.02L10 12.77L5.82 15.02L6.5 10.14L3 6.77L7.91 6.26L10 2Z"/>
                 </svg>
               </div>
             ))}
           </div>
-          <span className="text-white text-sm ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
+          <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
         {/* Wavy Bottom Edge */}
@@ -173,44 +173,38 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
       </div>
 
       {/* Main Content with White Background */}
-      <main className="bg-white pt-12 pb-8 min-h-screen -mt-1 flex flex-col">
-        <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
-      
-      <div className="relative z-10 flex flex-col items-center justify-center flex-grow px-4 text-center">
-        <div className="max-w-2xl mx-auto">
+      <main className="bg-white py-8 md:py-12 min-h-[calc(100vh-200px)] -mt-1 flex flex-col items-center justify-center">
+        <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center flex-grow">
           {/* Checkmark Circle */}
-          <div className="flex justify-center mb-8">
-            <div className="w-24 h-24 bg-[#FF6B8A] rounded-full flex items-center justify-center">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex justify-center mb-6 md:mb-8">
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-[#FF6B8A] rounded-full flex items-center justify-center">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="md:w-12 md:h-12">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 md:mb-6 text-center px-4">
             Thank You!
           </h1>
           
-          <p className="text-lg md:text-xl text-gray-900 mb-3">
+          <p className="text-base sm:text-lg md:text-xl text-gray-900 mb-3 text-center px-4">
             Your form has been successfully submitted.
           </p>
           
-          <p className="text-lg md:text-xl text-gray-900">
+          <p className="text-base sm:text-lg md:text-xl text-gray-900 text-center px-4 mb-8 md:mb-12">
             We appreciate your enquiry, and we will get back to you shortly.
           </p>
-        </div>
         
-        {/* Privacy Policy Text at Bottom */}
-        <div className="absolute bottom-8 left-0 right-0 px-4">
-          <p className="text-muted-foreground text-sm text-center max-w-3xl mx-auto">
-            The personal information we have collected from you will be shared with fraud prevention agencies who will use it to prevent fraud and money laundering and to verify your identity. If fraud is detected, you could be refused finance{" "}
-            <a href="https://carfinanced.co.uk/privacy?_gl=1*1cbkk17*_ga*MTIwNDU0ODg5Ni4xNzU3Njc4ODIx*_ga_6ZQ951WRXK*czE3NTc3MDAzMzckbzMkZzEkdDE3NTc3MDQ4NjgkajU4JGwwJGgw" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-              privacy policy
-            </a>.
-          </p>
-        </div>
-        
-        </div>
+          {/* Privacy Policy Text */}
+          <div className="mt-auto pt-8 w-full">
+            <p className="text-muted-foreground text-xs sm:text-sm text-center max-w-3xl mx-auto px-4">
+              The personal information we have collected from you will be shared with fraud prevention agencies who will use it to prevent fraud and money laundering and to verify your identity. If fraud is detected, you could be refused finance{" "}
+              <a href="https://carfinanced.co.uk/privacy?_gl=1*1cbkk17*_ga*MTIwNDU0ODg5Ni4xNzU3Njc4ODIx*_ga_6ZQ951WRXK*czE3NTc3MDAzMzckbzMkZzEkdDE3NTc3MDQ4NjgkajU4JGwwJGgw" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                privacy policy
+              </a>.
+            </p>
+          </div>
         </div>
       </main>
 
@@ -222,8 +216,8 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
               opacity: 1;
             }
             100% {
-              transform: translateY(100vh) rotate(720deg);
-              opacity: 0.3;
+              transform: translateY(100vh) rotate(1080deg);
+              opacity: 0;
             }
           }
         `
