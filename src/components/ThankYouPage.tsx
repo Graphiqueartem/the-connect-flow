@@ -135,47 +135,35 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
               <span className="text-white font-bold text-xl tracking-wide">carfinanced</span>
             </div>
             
-            {/* Trustpilot Section with Boxed Stars */}
+            {/* Trustpilot Section - Horizontal Inline */}
             <div className="flex items-center gap-2">
               <img 
                 src={trustpilotLogo} 
                 alt="Trustpilot" 
-                className="h-5"
+                className="h-6"
               />
               <div className="flex gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-6 h-6 bg-[#00B67A] flex items-center justify-center">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="white">
+                  <div key={i} className="w-7 h-7 bg-[#00B67A] flex items-center justify-center">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="white">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
                   </div>
                 ))}
               </div>
-              <a 
-                href="https://www.trustpilot.com/review/carfinanced.co.uk" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white text-sm hover:underline ml-1"
-              >
-                Based on <span className="font-semibold underline">4,556 reviews</span>
-              </a>
+              <div className="bg-[#FF4E5C] px-3 py-1 rounded">
+                <a 
+                  href="https://www.trustpilot.com/review/carfinanced.co.uk" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white text-sm font-medium hover:underline whitespace-nowrap"
+                >
+                  Based on <span className="font-bold">4,556 reviews</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Wavy Divider */}
-      <div className="relative h-24 bg-[#FF6B8A] overflow-hidden">
-        <svg
-          viewBox="0 0 1440 120"
-          className="absolute bottom-0 w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,60 C240,90 480,30 720,60 C960,90 1200,30 1440,60 L1440,120 L0,120 Z"
-            fill="#FFEB3B"
-          />
-        </svg>
       </div>
       
       {/* Confetti Animation - Full screen */}
