@@ -163,10 +163,10 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
           </div>
         </div>
 
-        {/* Concave Curve from Middle */}
+        {/* Inverted Convex Curve from Middle */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
           <svg className="relative block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0 L0,120 L1200,120 L1200,0 Q600,80 0,0 Z" fill="white"></path>
+            <path d="M0,120 L0,0 L1200,0 L1200,120 Q600,40 0,120 Z" fill="white"></path>
           </svg>
         </div>
       </div>
