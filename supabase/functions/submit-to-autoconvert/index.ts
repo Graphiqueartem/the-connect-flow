@@ -65,16 +65,20 @@ serve(async (req) => {
   try {
     console.log('🚀 ===== AUTOCONVERT EDGE FUNCTION STARTED =====');
     
-    const AUTOCONVERT_API_KEY = Deno.env.get('AUTOCONVERT_API_KEY');
+    const { apiKeyId, ...payload } = await req.json();
+    
+    // Support multiple API keys: AUTOCONVERT_API_KEY, AUTOCONVERT_API_KEY_1, AUTOCONVERT_API_KEY_2, etc.
+    const keyName = apiKeyId ? `AUTOCONVERT_API_KEY_${apiKeyId}` : 'AUTOCONVERT_API_KEY';
+    console.log('🔑 Looking for API key:', keyName);
+    
+    const AUTOCONVERT_API_KEY = Deno.env.get(keyName);
     if (!AUTOCONVERT_API_KEY) {
-      console.error('❌ AUTOCONVERT_API_KEY environment variable not set');
-      throw new Error('AutoConvert API key not configured');
+      console.error(`❌ ${keyName} environment variable not set`);
+      throw new Error(`AutoConvert API key not configured for: ${keyName}`);
     }
 
     console.log('🔑 API Key found:', AUTOCONVERT_API_KEY ? `${AUTOCONVERT_API_KEY.substring(0, 8)}...` : 'NOT FOUND');
     console.log('🔑 API Key length:', AUTOCONVERT_API_KEY?.length || 0);
-
-    const payload: AutoConvertPayload = await req.json();
     console.log('📦 ===== RECEIVED PAYLOAD =====');
     console.log('Payload received:', JSON.stringify(payload, null, 2));
 
