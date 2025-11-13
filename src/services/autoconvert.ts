@@ -315,14 +315,22 @@ export const submitToAutoConvert = async (formData: FormData, utmParams: UTMPara
   try {
     const payload = mapFormDataToPayload(formData, utmParams);
     
+    // Get API key ID from environment variable (e.g., "1", "2", "3")
+    // If not set, uses default AUTOCONVERT_API_KEY
+    const apiKeyId = import.meta.env.VITE_AUTOCONVERT_API_KEY_ID;
+    
     console.log('📦 ===== MAPPED PAYLOAD FOR AUTOCONVERT =====');
     console.log(JSON.stringify(payload, null, 2));
+    console.log('🔑 Using API Key ID:', apiKeyId || 'default');
     
     console.log('🌐 ===== CALLING SUPABASE EDGE FUNCTION =====');
     console.log('📤 Sending payload to submit-to-autoconvert edge function...');
     
     const { data, error } = await supabase.functions.invoke('submit-to-autoconvert', {
-      body: payload
+      body: {
+        ...payload,
+        apiKeyId
+      }
     });
 
     console.log('📨 ===== EDGE FUNCTION RESPONSE =====');
