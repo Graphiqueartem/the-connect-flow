@@ -1059,7 +1059,7 @@ const CarFinanceApplication = () => {
           preserveAspectRatio="none"
           style={{
             position: "absolute",
-            bottom: "0",
+            bottom: "-2px",
             left: "0",
             width: "100%",
             height: "90px",
@@ -1089,7 +1089,7 @@ const CarFinanceApplication = () => {
       </div>
 
       {/* Main Content with White Background */}
-      <main className="bg-white pt-12 pb-8 min-h-screen -mt-1 flex flex-col">
+      <main className="bg-white pt-4 pb-8 min-h-screen -mt-2 flex flex-col">
         <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
 
           {/* Step Content */}
