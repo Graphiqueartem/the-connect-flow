@@ -999,8 +999,8 @@ const CarFinanceApplication = () => {
 
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
-      {/* Pink Gradient Header with Confetti Background - Matches Reference */}
-      <div className="relative bg-gradient-to-br from-[#FF6B8A] via-[#FF7A94] to-[#FF8FA0] overflow-hidden">
+      {/* Header with Wave Bottom */}
+      <div style={{ background: "#FF585E", position: "relative", paddingBottom: "100px" }}>
         {/* Confetti Decorations */}
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
@@ -1052,34 +1052,22 @@ const CarFinanceApplication = () => {
           <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
-        {/* Wavy Bottom Edge */}
-        <div className="relative" style={{ marginTop: '40px' }}>
-          <svg className="w-full h-auto" style={{ display: 'block', transform: 'translateY(1px)' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,40 Q360,10 720,40 T1440,40 L1440,100 L0,100 Z" fill="white"/>
-          </svg>
-          
-          {/* Yellow Progress Bar along the arch */}
-          <svg className="w-full h-auto absolute bottom-0 left-0" style={{ display: 'block' }} viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
-                <stop offset="50%" style={{ stopColor: '#FFC700', stopOpacity: 1 }} />
-                <stop offset="100%" style={{ stopColor: '#FFB700', stopOpacity: 1 }} />
-              </linearGradient>
-              <clipPath id="progressClip">
-                <rect x="0" y="0" width={`${progressPercentage}%`} height="100" />
-              </clipPath>
-            </defs>
-            <path 
-              d="M0,40 Q360,10 720,40 T1440,40" 
-              stroke="url(#yellowGradient)" 
-              strokeWidth="6" 
-              fill="none"
-              strokeLinecap="round"
-              clipPath="url(#progressClip)"
-            />
-          </svg>
-        </div>
+        {/* Wave at bottom */}
+        <svg
+          viewBox="0 0 1440 100"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            position: "absolute",
+            bottom: "0",
+            left: "0",
+            width: "100%",
+          }}
+        >
+          <path
+            d="M0,40 C300,120 600,-40 900,40 C1150,100 1300,40 1440,80 L1440,0 L0,0 Z"
+            fill="#FF585E"
+          />
+        </svg>
       </div>
 
       {/* Main Content with White Background */}
