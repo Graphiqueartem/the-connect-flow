@@ -83,6 +83,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (employmentStatus: string) => {
     updateFormData({ employmentStatus: employmentStatus as any });
+    setTimeout(() => onNext?.(), 300); // Auto-advance after selection
   };
 
   return (
@@ -1089,7 +1090,7 @@ const CarFinanceApplication = () => {
       </div>
 
       {/* Main Content with White Background */}
-      <main className="bg-white pt-4 pb-8 min-h-screen -mt-2 flex flex-col">
+      <main className="bg-white pt-4 pb-24 min-h-screen -mt-2 flex flex-col">
         <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
 
           {/* Step Content */}
@@ -1206,6 +1207,7 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (vehicleType: string) => {
     updateFormData({ vehicleType: vehicleType as any });
+    setTimeout(() => onNext(), 300); // Auto-advance after selection
   };
 
   return (
@@ -1214,8 +1216,8 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
         What would you like a finance quote for?
       </h1>
       
-      {/* Vehicle Selection Buttons */}
-      <div className="flex flex-row justify-center items-stretch gap-4 md:gap-6 max-w-2xl mx-auto mb-32 px-4">
+      {/* Vehicle Selection Buttons - Auto advance on selection */}
+      <div className="flex flex-row justify-center items-stretch gap-4 md:gap-6 max-w-2xl mx-auto mb-12 px-4">
         {[
           { 
             value: "car", 
@@ -1270,21 +1272,14 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
         ))}
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+      {/* Bottom Navigation - Only Back button, no Next */}
+      <div className="flex flex-col items-center gap-6 max-w-md mx-auto px-4 mt-8">
         <div className="flex items-center justify-center gap-4 w-full">
           <button 
             onClick={() => window.location.href = 'https://carfinanced.co.uk/'}
-            className="flex-1 max-w-[140px] px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors"
+            className="flex-1 max-w-[175px] px-8 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors text-lg"
           >
             Back
-          </button>
-          <button 
-            onClick={() => formData.vehicleType && onNext()}
-            disabled={!formData.vehicleType}
-            className="flex-1 max-w-[140px] px-6 py-3 text-white bg-[#FF6B8A] hover:bg-[#FF5579] disabled:bg-gray-300 disabled:cursor-not-allowed rounded-full font-semibold transition-colors"
-          >
-            Next
           </button>
         </div>
 
@@ -1304,10 +1299,14 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleLicenceSelection = (hasFullLicence: boolean) => {
     updateFormData({ hasFullLicence, licenceType: "" });
+    if (hasFullLicence) {
+      setTimeout(() => onNext(), 300); // Auto-advance if Yes
+    }
   };
 
   const handleLicenceTypeSelection = (licenceType: string) => {
     updateFormData({ licenceType: licenceType as any });
+    setTimeout(() => onNext(), 300); // Auto-advance after licence type selection
   };
 
   return (
@@ -1378,6 +1377,7 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (maritalStatus: string) => {
     updateFormData({ maritalStatus: maritalStatus as any });
+    setTimeout(() => onNext(), 300); // Auto-advance after selection
   };
 
   return (
@@ -1553,6 +1553,7 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 }) => {
   const handleSelection = (housingSituation: string) => {
     updateFormData({ housingSituation: housingSituation as any });
+    setTimeout(() => onNext(), 300); // Auto-advance after selection
   };
 
   return (
@@ -1679,6 +1680,7 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
     
     console.log('🏠 Updated addresses:', updatedAddresses);
     updateFormData({ previousAddresses: updatedAddresses });
+    setTimeout(() => onNext?.(), 300); // Auto-advance after selection
   };
 
   return (
