@@ -87,7 +87,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
         What is your employment status?
       </h1>
       
@@ -101,7 +101,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
             <button
               key={option.value}
               onClick={() => handleSelection(option.value)}
-              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
                   ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
                   : 'bg-background border-border text-foreground hover:border-foreground/30'
@@ -120,7 +120,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
             <button
               key={option.value}
               onClick={() => handleSelection(option.value)}
-              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
                   ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
                   : 'bg-background border-border text-foreground hover:border-foreground/30'
@@ -139,7 +139,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
             <button
               key={option.value}
               onClick={() => handleSelection(option.value)}
-              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
                   ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
                   : 'bg-background border-border text-foreground hover:border-foreground/30'
@@ -157,7 +157,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
             <button
               key={option.value}
               onClick={() => handleSelection(option.value)}
-              className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+              className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
                   ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
                   : 'bg-background border-border text-foreground hover:border-foreground/30'
@@ -174,7 +174,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 
 const JobDetailsStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">
+    <h1 className="text-[38px] font-bold text-gray-900 mb-6">
       Great! What's your current job title?
     </h1>
     
@@ -204,7 +204,7 @@ const JobDetailsStep = ({ formData, updateFormData }: { formData: FormData; upda
 
 const EmploymentDurationStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+    <h1 className="text-[38px] font-bold text-gray-900 mb-12">
       How long have you worked at {formData.companyName}?
     </h1>
     
@@ -241,7 +241,7 @@ const MonthlyIncomeStep = ({ formData, updateFormData }: { formData: FormData; u
   
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
         Roughly, how much do you earn each month?
       </h1>
       
@@ -270,7 +270,7 @@ const MonthlyIncomeStep = ({ formData, updateFormData }: { formData: FormData; u
 
 const LoanAmountStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+    <h1 className="text-[38px] font-bold text-gray-900 mb-12">
       Roughly how much would you like to borrow?
     </h1>
     
@@ -301,7 +301,7 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
         Almost done, let us know who you are?
       </h1>
       
@@ -354,7 +354,7 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 
 const ContactDetailsStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+    <h1 className="text-[38px] font-bold text-gray-900 mb-12">
       Finally, how should we contact you?
     </h1>
     
@@ -1140,22 +1140,24 @@ const CarFinanceApplication = () => {
               })()}
             </div>
 
-            {/* Navigation - Hidden for step 1 as it has its own buttons */}
+            {/* Navigation - Only show Next button for DOB step (step 4), Back button for all other steps */}
             {currentStep !== 1 && currentStep < getTotalSteps() && (
-            <div className="mt-auto pt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+            <div className="mt-8 pt-6 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
               <div className="flex items-center justify-center gap-4 w-full">
                 <button 
                   onClick={prevStep}
-                  className="flex-1 max-w-[140px] px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors"
+                  className="flex-1 max-w-[175px] px-8 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors text-lg"
                 >
                   Back
                 </button>
-                <button 
-                  onClick={nextStep}
-                  className="flex-1 max-w-[140px] px-6 py-3 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors"
-                >
-                  Next
-                </button>
+                {currentStep === 4 && (
+                  <button 
+                    onClick={nextStep}
+                    className="flex-1 max-w-[175px] px-8 py-4 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors text-lg"
+                  >
+                    Next
+                  </button>
+                )}
               </div>
               
               <p className="text-gray-600 text-center text-sm">
@@ -1167,17 +1169,17 @@ const CarFinanceApplication = () => {
             
             {/* Final submit button */}
             {currentStep === getTotalSteps() && (
-              <div className="mt-auto pt-12 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+              <div className="mt-8 pt-6 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
                 <div className="flex items-center justify-center gap-4 w-full">
                   <button 
                     onClick={prevStep}
-                    className="flex-1 max-w-[140px] px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors"
+                    className="flex-1 max-w-[175px] px-8 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors text-lg"
                   >
                     Back
                   </button>
                   <button 
                     onClick={nextStep}
-                    className="flex-1 max-w-[140px] px-6 py-3 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors"
+                    className="flex-1 max-w-[175px] px-8 py-4 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors text-lg"
                   >
                     Submit
                   </button>
@@ -1310,7 +1312,7 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
+      <h1 className="text-[38px] font-bold text-foreground mb-12">
         Do you have a full UK driving licence?
       </h1>
       
@@ -1380,7 +1382,7 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
+      <h1 className="text-[38px] font-bold text-foreground mb-12">
         Which best describes you?
       </h1>
       
@@ -1458,7 +1460,7 @@ const DateOfBirthStep = ({ formData, updateFormData }: { formData: FormData; upd
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
+      <h1 className="text-[38px] font-bold text-foreground mb-12">
         What is your date of birth?
       </h1>
       
@@ -1468,7 +1470,7 @@ const DateOfBirthStep = ({ formData, updateFormData }: { formData: FormData; upd
           value={formData.dateOfBirth}
           onChange={(e) => handleDateChange(e.target.value)}
           placeholder="DD / MM / YYYY"
-          className={`w-full px-6 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
+          className={`w-full px-7 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
             isUnder18 
               ? 'border-red-500 focus:border-red-500' 
               : 'border-border focus:border-foreground/30'
@@ -1528,7 +1530,7 @@ const AddressStep = ({ formData, updateFormData }: { formData: FormData; updateF
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
         Next, where do you live?
       </h1>
       
@@ -1555,7 +1557,7 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-foreground mb-12">
+      <h1 className="text-[38px] font-bold text-foreground mb-12">
         Ok, Which best describes you?
       </h1>
       
@@ -1585,7 +1587,7 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 
 const AddressDurationStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
+    <h1 className="text-[38px] font-bold text-gray-900 mb-8">
       How long have you lived at {formData.address}?
     </h1>
     
@@ -1633,7 +1635,7 @@ const PreviousAddressStep = ({ formData, updateFormData, addressIndex }: {
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
         And what was your previous address?
       </h1>
       
@@ -1681,7 +1683,7 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-12">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
         Ok, Which best describes you?
       </h1>
       
@@ -1748,7 +1750,7 @@ const PreviousAddressDurationStep = ({ formData, updateFormData, addressIndex }:
 
   return (
     <div>
-      <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
+      <h1 className="text-[38px] font-bold text-gray-900 mb-8">
         How long did you live at {address}?
       </h1>
       
