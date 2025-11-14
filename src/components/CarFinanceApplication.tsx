@@ -999,8 +999,8 @@ const CarFinanceApplication = () => {
 
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
-      {/* Header with Confetti Background */}
-      <div className="relative bg-primary overflow-hidden" style={{ height: '303px' }}>
+      {/* Pink Gradient Header with Confetti Background - Matches Reference */}
+      <div className="relative bg-gradient-to-br from-[#FF6B8A] via-[#FF7A94] to-[#FF8FA0] overflow-hidden">
         {/* Confetti Decorations */}
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
