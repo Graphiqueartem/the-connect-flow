@@ -1000,7 +1000,7 @@ const CarFinanceApplication = () => {
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
       {/* Header with Wave Bottom */}
-      <div style={{ background: "#FF585E", position: "relative", paddingBottom: "100px" }}>
+      <div style={{ background: "#FF585E", position: "relative", paddingBottom: "75px" }}>
         {/* Confetti Decorations */}
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-8 left-[5%] w-3 h-8 bg-blue-400 rotate-45 rounded-sm"></div>
@@ -1024,7 +1024,7 @@ const CarFinanceApplication = () => {
         </div>
 
         {/* Logo Centered */}
-        <div className="relative z-10 pt-6 sm:pt-8 pb-3 sm:pb-4 px-4 sm:px-6 text-center">
+        <div className="relative z-10 pt-4 sm:pt-6 pb-2 sm:pb-3 px-4 sm:px-6 text-center">
           <a href="https://carfinanced.co.uk/" target="_blank" rel="noopener noreferrer" className="inline-block">
             <img 
               src={carfinancedHeaderLogo} 
@@ -1035,7 +1035,7 @@ const CarFinanceApplication = () => {
         </div>
 
         {/* Trustpilot Stars */}
-        <div className="relative z-10 pb-7 sm:pb-9 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+        <div className="relative z-10 pb-5 sm:pb-7 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" className="sm:w-6 sm:h-6">
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
@@ -1052,7 +1052,7 @@ const CarFinanceApplication = () => {
           <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
-        {/* Wave at bottom with white fill and yellow progress line - full edge to edge */}
+        {/* Wave at bottom with white fill and yellow progress line - more pronounced arch */}
         <svg
           viewBox="0 0 1440 150"
           xmlns="http://www.w3.org/2000/svg"
@@ -1062,18 +1062,18 @@ const CarFinanceApplication = () => {
             bottom: "0",
             left: "0",
             width: "100%",
-            height: "120px",
+            height: "90px",
           }}
         >
-          {/* White background curve - perfect arch from edge to edge */}
+          {/* White background curve - deeper arch */}
           <path
-            d="M 0,150 L 0,80 Q 720,0 1440,80 L 1440,150 Z"
+            d="M 0,150 L 0,100 Q 720,20 1440,100 L 1440,150 Z"
             fill="#ffffff"
           />
           
           {/* Yellow progress line along the curve */}
           <path
-            d="M 0,80 Q 720,0 1440,80"
+            d="M 0,100 Q 720,20 1440,100"
             fill="none"
             stroke="#FFD700"
             strokeWidth="5"
