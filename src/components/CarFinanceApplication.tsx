@@ -1054,32 +1054,32 @@ const CarFinanceApplication = () => {
 
         {/* Wave at bottom with white fill and yellow progress line */}
         <svg
-          viewBox="0 0 1440 100"
+          viewBox="0 0 1440 150"
           xmlns="http://www.w3.org/2000/svg"
           style={{
             position: "absolute",
             bottom: "-1px",
             left: "0",
             width: "100%",
-            height: "100px",
+            height: "150px",
           }}
         >
-          {/* White background curve */}
+          {/* White background curve - deeper arc matching reference */}
           <path
-            d="M0,100 L0,80 Q720,0 1440,80 L1440,100 Z"
+            d="M 720,30 A 850,120 0 0 0 0,150 L 0,150 L 1440,150 A 850,120 0 0 0 720,30 Z"
             fill="#ffffff"
           />
           
           {/* Yellow progress line along the curve */}
           <path
-            d="M0,80 Q720,0 1440,80"
+            d="M 720,30 A 850,120 0 0 0 0,150 M 720,30 A 850,120 0 0 1 1440,150"
             fill="none"
             stroke="#FFD700"
             strokeWidth="4"
             strokeLinecap="round"
             style={{
-              strokeDasharray: "2880",
-              strokeDashoffset: 2880 - (2880 * (currentStep / getTotalSteps())),
+              strokeDasharray: "3600",
+              strokeDashoffset: 3600 - (3600 * (currentStep / getTotalSteps())),
               transition: "stroke-dashoffset 0.3s ease-in-out"
             }}
           />
