@@ -1052,7 +1052,7 @@ const CarFinanceApplication = () => {
           <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
-        {/* Wave at bottom */}
+        {/* Wave at bottom - Single curve elevated from middle */}
         <svg
           viewBox="0 0 1440 100"
           xmlns="http://www.w3.org/2000/svg"
@@ -1064,7 +1064,7 @@ const CarFinanceApplication = () => {
           }}
         >
           <path
-            d="M0,40 C300,120 600,-40 900,40 C1150,100 1300,40 1440,80 L1440,0 L0,0 Z"
+            d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z"
             fill="#FF585E"
           />
         </svg>
