@@ -1052,34 +1052,36 @@ const CarFinanceApplication = () => {
           <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
-        {/* Wave at bottom with white fill and yellow progress line */}
+        {/* Wave at bottom with white fill and yellow progress line - full edge to edge */}
         <svg
           viewBox="0 0 1440 150"
           xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
           style={{
             position: "absolute",
-            bottom: "-1px",
+            bottom: "0",
             left: "0",
             width: "100%",
-            height: "150px",
+            height: "120px",
           }}
         >
-          {/* White background curve - deeper arc matching reference */}
+          {/* White background curve - perfect arch from edge to edge */}
           <path
-            d="M 720,30 A 850,120 0 0 0 0,150 L 0,150 L 1440,150 A 850,120 0 0 0 720,30 Z"
+            d="M 0,150 L 0,80 Q 720,0 1440,80 L 1440,150 Z"
             fill="#ffffff"
           />
           
           {/* Yellow progress line along the curve */}
           <path
-            d="M 720,30 A 850,120 0 0 0 0,150 M 720,30 A 850,120 0 0 1 1440,150"
+            d="M 0,80 Q 720,0 1440,80"
             fill="none"
             stroke="#FFD700"
-            strokeWidth="4"
+            strokeWidth="5"
             strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
             style={{
-              strokeDasharray: "3600",
-              strokeDashoffset: 3600 - (3600 * (currentStep / getTotalSteps())),
+              strokeDasharray: "2880",
+              strokeDashoffset: 2880 - (2880 * (currentStep / getTotalSteps())),
               transition: "stroke-dashoffset 0.3s ease-in-out"
             }}
           />
