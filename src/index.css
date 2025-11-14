@@ -31,42 +31,47 @@
 
 @layer base {
   :root {
-    /* CarFinanced Brand Colors - Exact Match */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 20%;
+    /* Updated Brand Colors */
+    --background: 0 0% 100%; /* White #FFFFFF */
+    --foreground: 0 0% 0%; /* Black #000000 */
     
-    /* Primary Blue - CarFinanced Blue - #175fbe */
-    --primary: 214 78% 42%;
+    /* Primary Red - Header */
+    --primary: 357 100% 67%; /* Red #FF585E */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 214 78% 37%;
-    --primary-light: 214 78% 95%;
+    --primary-hover: 357 100% 60%;
+    --primary-light: 357 100% 91%; /* Light Pink #FFCED0 */
     
     /* Secondary & Muted */
-    --secondary: 0 0% 60%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --secondary: 0 0% 86%; /* Grey #DBDBDB */
+    --secondary-foreground: 0 0% 0%;
+    --secondary-hover: 0 0% 80%;
+    --muted: 0 0% 95%; /* Light Grey #F2F2F2 */
+    --muted-foreground: 0 0% 40%;
     
     /* Form Elements */
-    --border: 0 0% 90%;
+    --border: 0 0% 86%; /* Grey #DBDBDB */
     --input: 0 0% 100%;
-    --ring: 214 78% 42%;
+    --ring: 357 100% 67%;
     
     /* Cards & Components */
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover-foreground: 0 0% 0%;
     
     /* Status & Accent */
-    --success: 142 76% 36%;
-    --destructive: 0 84% 60%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 20%;
+    --success: 162 100% 36%; /* Green #00B67A */
+    --success-foreground: 0 0% 100%;
+    --warning: 58 100% 67%; /* Yellow #FFF554 */
+    --warning-foreground: 0 0% 0%;
+    --destructive: 357 100% 67%; /* Red #FF585E */
+    --destructive-foreground: 0 0% 100%;
+    --accent: 357 100% 91%; /* Light Pink #FFCED0 */
+    --accent-foreground: 0 0% 0%;
     
     /* Progress Bar */
-    --progress-bg: 0 0% 90%;
-    --progress-fill: 214 78% 42%;
+    --progress-bg: 0 0% 86%;
+    --progress-fill: 357 100% 67%;
     
     --radius: 2rem;
   }
@@ -78,7 +83,7 @@
   }
 
   body {
-    @apply bg-white text-gray-800 antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Neue Montreal', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   
@@ -93,14 +98,14 @@
 }
 
 @layer components {
-  /* CarFinanced Option Buttons - Exact CTA Style */
+  /* Option Buttons */
   .option-button {
     padding: 10px;
     max-height: 52px;
     font-size: 0.96rem !important;
-    border: 2px solid #175fbe;
+    border: 2px solid hsl(var(--primary));
     border-radius: 10px;
-    background: #fff;
+    background: hsl(var(--background));
     flex-grow: 1;
     text-align: center;
     margin: 0 20px 20px 0;
@@ -111,20 +116,20 @@
     font-weight: 600;
     cursor: pointer;
     min-width: 140px;
-    color: #175fbe;
+    color: hsl(var(--primary));
   }
   
   .option-button.selected {
-    @apply bg-blue-600 text-white border-blue-600;
+    @apply bg-primary text-primary-foreground border-primary;
   }
   
   .option-button:hover {
-    background: #f8fafc;
+    @apply bg-muted;
   }
   
-  /* Continue Button - Match Reference Design */
+  /* Continue Button */
   .continue-button {
-    @apply w-full max-w-md mx-auto px-6 py-3 font-semibold text-white bg-blue-600 rounded-2xl hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2;
+    @apply w-full max-w-md mx-auto px-6 py-3 font-semibold bg-primary text-primary-foreground rounded-2xl hover:bg-primary-hover transition-colors duration-200 flex items-center justify-center gap-2;
     font-size: 0.9rem;
   }
   
