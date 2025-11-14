@@ -1052,20 +1052,36 @@ const CarFinanceApplication = () => {
           <span className="text-white text-xs sm:text-sm ml-0.5 sm:ml-1">Based on <span className="underline font-semibold">456 reviews</span></span>
         </div>
 
-        {/* Wave at bottom - Single curve elevated from middle */}
+        {/* Wave at bottom with white fill and yellow progress line */}
         <svg
           viewBox="0 0 1440 100"
           xmlns="http://www.w3.org/2000/svg"
           style={{
             position: "absolute",
-            bottom: "0",
+            bottom: "-1px",
             left: "0",
             width: "100%",
+            height: "100px",
           }}
         >
+          {/* White background curve */}
           <path
-            d="M0,80 Q720,0 1440,80 L1440,0 L0,0 Z"
-            fill="#FF585E"
+            d="M0,100 L0,80 Q720,0 1440,80 L1440,100 Z"
+            fill="#ffffff"
+          />
+          
+          {/* Yellow progress line along the curve */}
+          <path
+            d="M0,80 Q720,0 1440,80"
+            fill="none"
+            stroke="#FFD700"
+            strokeWidth="4"
+            strokeLinecap="round"
+            style={{
+              strokeDasharray: "2880",
+              strokeDashoffset: 2880 - (2880 * (currentStep / getTotalSteps())),
+              transition: "stroke-dashoffset 0.3s ease-in-out"
+            }}
           />
         </svg>
       </div>
