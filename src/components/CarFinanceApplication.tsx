@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, ArrowLeft, Shield } from "lucide-react";
+import { ArrowRight, ArrowLeft, Shield, Car } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import AddressAutocomplete from "./AddressAutocomplete";
@@ -1086,6 +1086,30 @@ const CarFinanceApplication = () => {
               transition: "stroke-dashoffset 0.3s ease-in-out"
             }}
           />
+          
+          {/* Car icon moving along the curve */}
+          {(() => {
+            const progress = currentStep / getTotalSteps();
+            // Calculate position on quadratic bezier curve: M 0,100 Q 720,20 1440,100
+            const t = progress;
+            const x0 = 0, y0 = 100;
+            const x1 = 720, y1 = 20;
+            const x2 = 1440, y2 = 100;
+            
+            const x = Math.pow(1 - t, 2) * x0 + 2 * (1 - t) * t * x1 + Math.pow(t, 2) * x2;
+            const y = Math.pow(1 - t, 2) * y0 + 2 * (1 - t) * t * y1 + Math.pow(t, 2) * y2;
+            
+            return (
+              <g style={{ transition: "all 0.3s ease-in-out" }}>
+                {/* Car icon */}
+                <foreignObject x={x - 16} y={y - 16} width="32" height="32">
+                  <div className="flex items-center justify-center w-full h-full">
+                    <Car className="w-8 h-8 text-[#FF6B8A] drop-shadow-lg" strokeWidth={2.5} />
+                  </div>
+                </foreignObject>
+              </g>
+            );
+          })()}
         </svg>
       </div>
 
