@@ -1074,6 +1074,7 @@ const CarFinanceApplication = () => {
           
           {/* Yellow progress line along the curve */}
           <path
+            id="progress-path"
             d="M 0,100 Q 720,20 1440,100"
             fill="none"
             stroke="#FFD700"
@@ -1083,11 +1084,11 @@ const CarFinanceApplication = () => {
             style={{
               strokeDasharray: "2880",
               strokeDashoffset: 2880 - (2880 * (currentStep / getTotalSteps())),
-              transition: "stroke-dashoffset 0.3s ease-in-out"
+              transition: "stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
             }}
           />
           
-          {/* Car icon moving along the curve */}
+          {/* Car icon moving along the curve - following the yellow line */}
           {(() => {
             const progress = currentStep / getTotalSteps();
             // Calculate position on quadratic bezier curve: M 0,100 Q 720,20 1440,100
@@ -1101,6 +1102,15 @@ const CarFinanceApplication = () => {
             
             return (
               <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
+                {/* Glow effect behind car */}
+                <circle 
+                  cx={x} 
+                  cy={y} 
+                  r="20" 
+                  fill="#FFD700" 
+                  opacity="0.3"
+                  style={{ filter: "blur(8px)" }}
+                />
                 {/* Car icon */}
                 <foreignObject x={x - 24} y={y - 24} width="48" height="48">
                   <div className="flex items-center justify-center w-full h-full animate-bounce-subtle">
