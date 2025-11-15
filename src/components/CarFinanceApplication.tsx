@@ -1100,11 +1100,11 @@ const CarFinanceApplication = () => {
             const y = Math.pow(1 - t, 2) * y0 + 2 * (1 - t) * t * y1 + Math.pow(t, 2) * y2;
             
             return (
-              <g style={{ transition: "all 0.3s ease-in-out" }}>
+              <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
                 {/* Car icon */}
-                <foreignObject x={x - 16} y={y - 16} width="32" height="32">
-                  <div className="flex items-center justify-center w-full h-full">
-                    <Car className="w-8 h-8 text-[#FF6B8A] drop-shadow-lg" strokeWidth={2.5} />
+                <foreignObject x={x - 24} y={y - 24} width="48" height="48">
+                  <div className="flex items-center justify-center w-full h-full animate-bounce-subtle">
+                    <Car className="w-12 h-12 text-[#FF6B8A] drop-shadow-xl" strokeWidth={2.5} fill="#FF6B8A" fillOpacity="0.2" />
                   </div>
                 </foreignObject>
               </g>
