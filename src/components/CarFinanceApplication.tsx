@@ -1088,15 +1088,16 @@ const CarFinanceApplication = () => {
             }}
           />
           
-          {/* Car icon moving along the curve - following the yellow line */}
+          {/* Car icon at the end of the progress line */}
           {(() => {
+            // Position car at the END of the visible progress line
             const progress = currentStep / getTotalSteps();
-            // Calculate position on quadratic bezier curve: M 0,100 Q 720,20 1440,100
             const t = progress;
             const x0 = 0, y0 = 100;
             const x1 = 720, y1 = 20;
             const x2 = 1440, y2 = 100;
             
+            // Calculate position on the curve
             const x = Math.pow(1 - t, 2) * x0 + 2 * (1 - t) * t * x1 + Math.pow(t, 2) * x2;
             const y = Math.pow(1 - t, 2) * y0 + 2 * (1 - t) * t * y1 + Math.pow(t, 2) * y2;
             
@@ -1109,7 +1110,10 @@ const CarFinanceApplication = () => {
                   r="20" 
                   fill="#FFD700" 
                   opacity="0.3"
-                  style={{ filter: "blur(8px)" }}
+                  style={{ 
+                    filter: "blur(8px)",
+                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+                  }}
                 />
                 {/* Car icon */}
                 <foreignObject x={x - 24} y={y - 24} width="48" height="48">
