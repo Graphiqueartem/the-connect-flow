@@ -92,6 +92,14 @@ export default {
             height: "0",
           },
         },
+        "bounce-subtle": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-4px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +108,7 @@ export default {
         "slide-out-left": "slideOutLeft 0.2s ease-in",
         "fade-in": "fadeIn 0.3s ease-out",
         "fade-out": "fadeOut 0.2s ease-in",
+        "bounce-subtle": "bounce-subtle 1s ease-in-out infinite",
       },
       transitionProperty: {
         'width': 'width',
