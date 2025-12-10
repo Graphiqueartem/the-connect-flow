@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, ArrowLeft, Shield, Car } from "lucide-react";
+import { ArrowRight, ArrowLeft, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import AddressAutocomplete from "./AddressAutocomplete";
 import carfinancedLogoNew from "@/assets/carfinanced-logo-new.png";
 import carfinancedHeaderLogo from "@/assets/carfinanced-header-logo.png";
 import trustpilotLogo from "@/assets/trustpilot-logo.png";
+import carProgressImage from "@/assets/car-progress.png";
 import ThankYouPage from "./ThankYouPage";
 import { submitToAutoConvert, UTMParams } from "@/services/autoconvert";
 
@@ -104,8 +105,8 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
               {option.label}
@@ -123,8 +124,8 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
               {option.label}
@@ -142,8 +143,8 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
               {option.label}
@@ -160,8 +161,8 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
               {option.label}
@@ -1000,6 +1001,21 @@ const CarFinanceApplication = () => {
 
   return (
     <div className="min-h-screen bg-white relative overflow-x-hidden">
+      {/* Fixed Back Button - Top Left */}
+      <button
+        onClick={() => {
+          if (currentStep === 1) {
+            window.location.href = 'https://carfinanced.co.uk/';
+          } else {
+            prevStep();
+          }
+        }}
+        className="fixed top-4 left-4 z-50 flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full shadow-md transition-all text-gray-700 font-medium"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        <span>Back</span>
+      </button>
+
       {/* Header with Wave Bottom */}
       <div style={{ background: "#FF585E", position: "relative", paddingBottom: "75px" }}>
         {/* Confetti Decorations */}
@@ -1088,7 +1104,7 @@ const CarFinanceApplication = () => {
             }}
           />
           
-          {/* Car icon at the end of the progress line */}
+          {/* Car image at the end of the progress line */}
           {(() => {
             // Position car at the END of the visible progress line
             const progress = currentStep / getTotalSteps();
@@ -1103,22 +1119,18 @@ const CarFinanceApplication = () => {
             
             return (
               <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                {/* Glow effect behind car */}
-                <circle 
-                  cx={x} 
-                  cy={y} 
-                  r="20" 
-                  fill="#FFD700" 
-                  opacity="0.3"
-                  style={{ 
-                    filter: "blur(8px)",
-                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-                  }}
-                />
-                {/* Car icon */}
-                <foreignObject x={x - 24} y={y - 24} width="48" height="48">
-                  <div className="flex items-center justify-center w-full h-full animate-bounce-subtle">
-                    <Car className="w-12 h-12 text-[#FF6B8A] drop-shadow-xl" strokeWidth={2.5} fill="#FF6B8A" fillOpacity="0.2" />
+                {/* Car image */}
+                <foreignObject x={x - 40} y={y - 25} width="80" height="50">
+                  <div 
+                    className="flex items-center justify-center w-full h-full"
+                    style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
+                  >
+                    <img 
+                      src={carProgressImage} 
+                      alt="Progress car" 
+                      className="w-20 h-auto drop-shadow-lg"
+                      style={{ transform: "scaleX(-1)" }}
+                    />
                   </div>
                 </foreignObject>
               </g>
@@ -1179,25 +1191,19 @@ const CarFinanceApplication = () => {
               })()}
             </div>
 
-            {/* Navigation - Only show Next button for DOB step (step 4), Back button for all other steps */}
+            {/* Navigation - Show Next button centered at bottom for input steps */}
             {currentStep !== 1 && currentStep < getTotalSteps() && (
             <div className="mt-8 pt-6 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
-              <div className="flex items-center justify-center gap-4 w-full">
+              {/* Show Next button for input-type steps (DOB, addresses, durations, job details, income, loan, personal details, contact) */}
+              {[4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19].includes(currentStep) || currentStep >= getEmploymentStep() + 1 ? (
                 <button 
-                  onClick={prevStep}
-                  className="flex-1 max-w-[175px] px-8 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors text-lg"
+                  onClick={nextStep}
+                  className="flex items-center justify-center gap-2 px-12 py-4 text-white bg-[#FF5A5F] hover:bg-[#E54B50] rounded-full font-semibold transition-all text-lg shadow-lg hover:shadow-xl"
                 >
-                  Back
+                  <span>Next</span>
+                  <ArrowRight className="w-5 h-5" />
                 </button>
-                {currentStep === 4 && (
-                  <button 
-                    onClick={nextStep}
-                    className="flex-1 max-w-[175px] px-8 py-4 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors text-lg"
-                  >
-                    Next
-                  </button>
-                )}
-              </div>
+              ) : null}
               
               <p className="text-gray-600 text-center text-sm">
                 By starting your quote you're agreeing to our{" "}
@@ -1209,20 +1215,13 @@ const CarFinanceApplication = () => {
             {/* Final submit button */}
             {currentStep === getTotalSteps() && (
               <div className="mt-8 pt-6 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
-                <div className="flex items-center justify-center gap-4 w-full">
-                  <button 
-                    onClick={prevStep}
-                    className="flex-1 max-w-[175px] px-8 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors text-lg"
-                  >
-                    Back
-                  </button>
-                  <button 
-                    onClick={nextStep}
-                    className="flex-1 max-w-[175px] px-8 py-4 text-white bg-[#FF6B8A] hover:bg-[#FF5579] rounded-full font-semibold transition-colors text-lg"
-                  >
-                    Submit
-                  </button>
-                </div>
+                <button 
+                  onClick={nextStep}
+                  className="flex items-center justify-center gap-2 px-12 py-4 text-white bg-[#FF5A5F] hover:bg-[#E54B50] rounded-full font-semibold transition-all text-lg shadow-lg hover:shadow-xl"
+                >
+                  <span>Submit</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
                 
                 <p className="text-gray-600 text-center text-sm">
                   By starting your quote you're agreeing to our{" "}
@@ -1297,8 +1296,8 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
               rounded-2xl border-2 
               transition-all duration-200
               ${formData.vehicleType === option.value 
-                ? 'bg-[#C8E6C9] border-[#81C784] text-gray-900' 
-                : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
+                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-gray-900' 
+                : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
               }
             `}
           >
@@ -1310,17 +1309,8 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
         ))}
       </div>
 
-      {/* Bottom Navigation - Only Back button, no Next */}
+      {/* Bottom Navigation - Privacy policy only (Back button is fixed at top) */}
       <div className="flex flex-col items-center gap-6 max-w-md mx-auto px-4 mt-8">
-        <div className="flex items-center justify-center gap-4 w-full">
-          <button 
-            onClick={() => window.location.href = 'https://carfinanced.co.uk/'}
-            className="flex-1 max-w-[175px] px-8 py-4 text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full font-semibold transition-colors text-lg"
-          >
-            Back
-          </button>
-        </div>
-
         <p className="text-gray-600 text-center text-sm">
           By starting your quote you're agreeing to our{" "}
           <a href="https://carfinanced.co.uk/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
@@ -1358,8 +1348,8 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
           onClick={() => handleLicenceSelection(true)}
           className={`px-16 py-6 rounded-2xl border-2 text-lg font-medium transition-all ${
             formData.hasFullLicence === true 
-              ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-              : 'bg-background border-border text-foreground hover:border-foreground/30'
+              ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+              : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
           }`}
         >
           Yes
@@ -1368,8 +1358,8 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
           onClick={() => handleLicenceSelection(false)}
           className={`px-16 py-6 rounded-2xl border-2 text-lg font-medium transition-all ${
             formData.hasFullLicence === false 
-              ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-              : 'bg-background border-border text-foreground hover:border-foreground/30'
+              ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+              : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
           }`}
         >
           Nope
@@ -1394,8 +1384,8 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
                 onClick={() => handleLicenceTypeSelection(option.value)}
                 className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
                   formData.licenceType === option.value 
-                    ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                    : 'bg-background border-border text-foreground hover:border-foreground/30'
+                    ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                    : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
                 }`}
               >
                 {option.label}
@@ -1436,8 +1426,8 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
                 formData.maritalStatus === option.value 
-                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
               {option.label}
@@ -1455,8 +1445,8 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
                 formData.maritalStatus === option.value 
-                  ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                  : 'bg-background border-border text-foreground hover:border-foreground/30'
+                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
               {option.label}
@@ -1468,8 +1458,8 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
             onClick={() => handleSelection("civil-partnership")}
             className={`w-full px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
               formData.maritalStatus === "civil-partnership" 
-                ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                : 'bg-background border-border text-foreground hover:border-foreground/30'
+                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
             }`}
           >
             Civil Partnership
@@ -1612,8 +1602,8 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
             onClick={() => handleSelection(option.value)}
             className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
               formData.housingSituation === option.value 
-                ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                : 'bg-background border-border text-foreground hover:border-foreground/30'
+                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
             }`}
           >
             {option.label}
@@ -1739,8 +1729,8 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
             onClick={() => handleSituationChange(option.value)}
             className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
               formData.previousAddresses[addressIndex]?.housingSituation === option.value 
-                ? 'bg-[#c8f5cd] border-[#4a5f4c] text-foreground' 
-                : 'bg-background border-border text-foreground hover:border-foreground/30'
+                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
             }`}
           >
             {option.label}
