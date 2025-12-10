@@ -1000,7 +1000,7 @@ const CarFinanceApplication = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white relative overflow-x-hidden">
+    <div className="h-screen bg-white relative overflow-hidden flex flex-col">
       {/* Fixed Back Button - Top Left */}
       <button
         onClick={() => {
@@ -1119,17 +1119,16 @@ const CarFinanceApplication = () => {
             
             return (
               <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                {/* Car image */}
-                <foreignObject x={x - 40} y={y - 25} width="80" height="50">
+                {/* Car image - back of car at line end, car drives forward */}
+                <foreignObject x={x - 5} y={y - 22} width="80" height="44">
                   <div 
-                    className="flex items-center justify-center w-full h-full"
+                    className="flex items-center justify-start w-full h-full"
                     style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
                   >
                     <img 
                       src={carProgressImage} 
                       alt="Progress car" 
-                      className="w-20 h-auto drop-shadow-lg"
-                      style={{ transform: "scaleX(-1)" }}
+                      className="w-[70px] h-auto drop-shadow-md"
                     />
                   </div>
                 </foreignObject>
@@ -1139,15 +1138,15 @@ const CarFinanceApplication = () => {
         </svg>
       </div>
 
-      {/* Main Content with White Background */}
-      <main className="bg-white pt-4 pb-24 min-h-screen -mt-2 flex flex-col">
-        <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col">
+      {/* Main Content with White Background - fit to viewport */}
+      <main className="bg-white pt-2 pb-4 flex-1 flex flex-col">
+        <div className="max-w-3xl mx-auto px-6 w-full flex-grow flex flex-col justify-between">
 
           {/* Step Content */}
-          <div className="form-container flex-grow flex flex-col">
+          <div className="form-container flex flex-col">
 
             {/* Step Components - Only render the current step */}
-            <div className="text-center flex-grow">
+            <div className="text-center">
               {/* Base Steps 1-7 */}
               {currentStep === 1 && <VehicleTypeStep formData={formData} updateFormData={updateFormData} onNext={() => navigateToStep(currentStep + 1)} />}
               {currentStep === 2 && <DrivingLicenceStep formData={formData} updateFormData={updateFormData} onNext={() => navigateToStep(currentStep + 1)} />}
@@ -1193,19 +1192,19 @@ const CarFinanceApplication = () => {
 
             {/* Navigation - Show Next button centered at bottom for input steps */}
             {currentStep !== 1 && currentStep < getTotalSteps() && (
-            <div className="mt-8 pt-6 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+            <div className="mt-auto pt-4 flex flex-col items-center gap-4 max-w-md mx-auto px-4">
               {/* Show Next button for input-type steps (DOB, addresses, durations, job details, income, loan, personal details, contact) */}
               {[4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19].includes(currentStep) || currentStep >= getEmploymentStep() + 1 ? (
                 <button 
                   onClick={nextStep}
-                  className="flex items-center justify-center gap-2 px-12 py-4 text-white bg-[#FF5A5F] hover:bg-[#E54B50] rounded-full font-semibold transition-all text-lg shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center gap-2 px-12 py-3 text-white bg-[#FF5A5F] hover:bg-[#E54B50] rounded-full font-semibold transition-all text-lg shadow-lg hover:shadow-xl"
                 >
                   <span>Next</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
               ) : null}
               
-              <p className="text-gray-600 text-center text-sm">
+              <p className="text-gray-500 text-center text-xs">
                 By starting your quote you're agreeing to our{" "}
                 <a href="https://carfinanced.co.uk/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
               </p>
@@ -1214,16 +1213,16 @@ const CarFinanceApplication = () => {
             
             {/* Final submit button */}
             {currentStep === getTotalSteps() && (
-              <div className="mt-8 pt-6 flex flex-col items-center gap-6 max-w-md mx-auto px-4">
+              <div className="mt-auto pt-4 flex flex-col items-center gap-4 max-w-md mx-auto px-4">
                 <button 
                   onClick={nextStep}
-                  className="flex items-center justify-center gap-2 px-12 py-4 text-white bg-[#FF5A5F] hover:bg-[#E54B50] rounded-full font-semibold transition-all text-lg shadow-lg hover:shadow-xl"
+                  className="flex items-center justify-center gap-2 px-12 py-3 text-white bg-[#FF5A5F] hover:bg-[#E54B50] rounded-full font-semibold transition-all text-lg shadow-lg hover:shadow-xl"
                 >
                   <span>Submit</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 
-                <p className="text-gray-600 text-center text-sm">
+                <p className="text-gray-500 text-center text-xs">
                   By starting your quote you're agreeing to our{" "}
                   <a href="https://carfinanced.co.uk/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
                 </p>
