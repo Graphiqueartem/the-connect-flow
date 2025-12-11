@@ -1115,7 +1115,12 @@ const CarFinanceApplication = () => {
           {(() => {
             // Position car at the END of the visible progress line
             const progress = currentStep / getTotalSteps();
-            const t = progress;
+            
+            // The bezier parameter t doesn't map linearly to arc length
+            // Apply correction to align car with actual yellow line end
+            const correctedT = progress * 0.88;
+            
+            const t = correctedT;
             const x0 = 0, y0 = 100;
             const x1 = 720, y1 = 20;
             const x2 = 1440, y2 = 100;
@@ -1124,21 +1129,21 @@ const CarFinanceApplication = () => {
             const x = Math.pow(1 - t, 2) * x0 + 2 * (1 - t) * t * x1 + Math.pow(t, 2) * x2;
             const y = Math.pow(1 - t, 2) * y0 + 2 * (1 - t) * t * y1 + Math.pow(t, 2) * y2;
             
-            // Car width - the back of the car should be at the end of the yellow line
-            const carWidth = 85;
+            // Car dimensions
+            const carWidth = 70;
             
             return (
               <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                {/* Car image - back of car aligned with end of yellow line */}
-                <foreignObject x={x} y={y - 20} width={carWidth} height="40">
+                {/* Car positioned so front of car touches yellow line end */}
+                <foreignObject x={x - carWidth + 10} y={y - 14} width={carWidth} height="28">
                   <div 
-                    className="flex items-center justify-start w-full h-full"
+                    className="flex items-center justify-end w-full h-full"
                     style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
                   >
                     <img 
                       src={carProgressImage} 
                       alt="Progress car" 
-                      className="h-[35px] w-auto drop-shadow-md"
+                      className="h-[24px] w-auto drop-shadow-md"
                       style={{ objectFit: 'contain' }}
                     />
                   </div>
