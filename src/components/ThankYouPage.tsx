@@ -188,11 +188,11 @@ const ThankYouPage: React.FC<ThankYouPageProps> = ({ formData, utmParams = {} })
             Thank You!
           </h1>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-900 mb-3 text-center px-4">
+          <p className="text-base sm:text-lg text-gray-600 text-center px-4 mb-2">
             Your form has been successfully submitted.
           </p>
           
-          <p className="text-base sm:text-lg md:text-xl text-gray-900 text-center px-4 mb-8 md:mb-12">
+          <p className="text-base sm:text-lg text-gray-600 text-center px-4 mb-8 md:mb-12">
             We appreciate your enquiry, and we will get back to you shortly.
           </p>
         

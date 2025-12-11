@@ -89,8 +89,9 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-        What is your employment status?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">What is your </span>
+        <span className="text-[#FF585E]">employment status?</span>
       </h1>
       
       <div className="flex flex-col items-center gap-4 max-w-3xl mx-auto">
@@ -105,7 +106,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                   : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
@@ -124,7 +125,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                   : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
@@ -143,7 +144,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                   : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
@@ -161,7 +162,7 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-10 py-5 rounded-2xl border-2 text-lg font-medium transition-all ${
                 formData.employmentStatus === option.value 
-                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                   : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
@@ -176,8 +177,9 @@ const EmploymentStep = ({ formData, updateFormData, onNext }: {
 
 const JobDetailsStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-[38px] font-bold text-gray-900 mb-6">
-      Great! What's your current job title?
+    <h1 className="text-[38px] font-bold mb-6">
+      <span className="text-gray-900">Great! What's your </span>
+      <span className="text-[#FF585E]">current job title?</span>
     </h1>
     
     <p className="text-gray-600 text-base mb-12">
@@ -206,8 +208,9 @@ const JobDetailsStep = ({ formData, updateFormData }: { formData: FormData; upda
 
 const EmploymentDurationStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-      How long have you worked at {formData.companyName}?
+    <h1 className="text-[38px] font-bold mb-12">
+      <span className="text-gray-900">How long have you </span>
+      <span className="text-[#FF585E]">worked at {formData.companyName}?</span>
     </h1>
     
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
@@ -243,8 +246,9 @@ const MonthlyIncomeStep = ({ formData, updateFormData }: { formData: FormData; u
   
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-        Roughly, how much do you earn each month?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Roughly, how much do you </span>
+        <span className="text-[#FF585E]">earn each month?</span>
       </h1>
       
       <div className="max-w-2xl mx-auto mb-8">
@@ -272,8 +276,9 @@ const MonthlyIncomeStep = ({ formData, updateFormData }: { formData: FormData; u
 
 const LoanAmountStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-      Roughly how much would you like to borrow?
+    <h1 className="text-[38px] font-bold mb-12">
+      <span className="text-gray-900">Roughly how much would </span>
+      <span className="text-[#FF585E]">you like to borrow?</span>
     </h1>
     
     <div className="max-w-2xl mx-auto">
@@ -303,8 +308,9 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-        Almost done, let us know who you are?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Almost done, let us </span>
+        <span className="text-[#FF585E]">know who you are?</span>
       </h1>
       
       <div className="max-w-2xl mx-auto space-y-8">
@@ -356,8 +362,9 @@ const PersonalDetailsStep = ({ formData, updateFormData, onNext }: {
 
 const ContactDetailsStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-      Finally, how should we contact you?
+    <h1 className="text-[38px] font-bold mb-12">
+      <span className="text-gray-900">Finally, how should </span>
+      <span className="text-[#FF585E]">we contact you?</span>
     </h1>
     
     <div className="max-w-2xl mx-auto space-y-6">
@@ -1119,8 +1126,8 @@ const CarFinanceApplication = () => {
             
             return (
               <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                {/* Car image - back of car at line end, car drives forward */}
-                <foreignObject x={x - 5} y={y - 22} width="80" height="44">
+                {/* Car image - positioned at the end of the yellow line */}
+                <foreignObject x={x - 10} y={y - 28} width="100" height="56">
                   <div 
                     className="flex items-center justify-start w-full h-full"
                     style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
@@ -1128,7 +1135,7 @@ const CarFinanceApplication = () => {
                     <img 
                       src={carProgressImage} 
                       alt="Progress car" 
-                      className="w-[70px] h-auto drop-shadow-md"
+                      className="w-[90px] h-auto object-contain drop-shadow-md"
                     />
                   </div>
                 </foreignObject>
@@ -1248,8 +1255,9 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div className="py-4">
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 px-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-        What would you like a finance quote for?
+      <h1 className="text-2xl md:text-3xl font-bold mb-8 px-4" style={{ fontFamily: 'Inter, sans-serif' }}>
+        <span className="text-gray-900">What would you like a </span>
+        <span className="text-[#FF585E]">finance quote for?</span>
       </h1>
       
       {/* Vehicle Selection Buttons - Auto advance on selection */}
@@ -1295,7 +1303,7 @@ const VehicleTypeStep = ({ formData, updateFormData, onNext }: {
               rounded-2xl border-2 
               transition-all duration-200
               ${formData.vehicleType === option.value 
-                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-gray-900' 
+                ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-gray-900' 
                 : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
               }
             `}
@@ -1338,8 +1346,9 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-foreground mb-12">
-        Do you have a full UK driving licence?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Do you have a </span>
+        <span className="text-[#FF585E]">full UK driving licence?</span>
       </h1>
       
       <div className="flex justify-center gap-6 mb-8">
@@ -1347,7 +1356,7 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
           onClick={() => handleLicenceSelection(true)}
           className={`px-16 py-6 rounded-2xl border-2 text-lg font-medium transition-all ${
             formData.hasFullLicence === true 
-              ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+              ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
               : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
           }`}
         >
@@ -1357,7 +1366,7 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
           onClick={() => handleLicenceSelection(false)}
           className={`px-16 py-6 rounded-2xl border-2 text-lg font-medium transition-all ${
             formData.hasFullLicence === false 
-              ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+              ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
               : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
           }`}
         >
@@ -1383,7 +1392,7 @@ const DrivingLicenceStep = ({ formData, updateFormData, onNext }: {
                 onClick={() => handleLicenceTypeSelection(option.value)}
                 className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
                   formData.licenceType === option.value 
-                    ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                    ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                     : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
                 }`}
               >
@@ -1409,8 +1418,9 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-foreground mb-12">
-        Which best describes you?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Which best </span>
+        <span className="text-[#FF585E]">describes you?</span>
       </h1>
       
       <div className="flex flex-col items-center gap-4 max-w-2xl mx-auto">
@@ -1425,7 +1435,7 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
                 formData.maritalStatus === option.value 
-                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                   : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
@@ -1444,7 +1454,7 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
               onClick={() => handleSelection(option.value)}
               className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
                 formData.maritalStatus === option.value 
-                  ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                  ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                   : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
               }`}
             >
@@ -1457,7 +1467,7 @@ const MaritalStatusStep = ({ formData, updateFormData, onNext }: {
             onClick={() => handleSelection("civil-partnership")}
             className={`w-full px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
               formData.maritalStatus === "civil-partnership" 
-                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                 : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
             }`}
           >
@@ -1487,8 +1497,9 @@ const DateOfBirthStep = ({ formData, updateFormData }: { formData: FormData; upd
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-foreground mb-12">
-        What is your date of birth?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">What is your </span>
+        <span className="text-[#FF585E]">date of birth?</span>
       </h1>
       
       <div className="max-w-xl mx-auto">
@@ -1557,8 +1568,9 @@ const AddressStep = ({ formData, updateFormData }: { formData: FormData; updateF
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-        Next, where do you live?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Next, where </span>
+        <span className="text-[#FF585E]">do you live?</span>
       </h1>
       
       <div className="max-w-2xl mx-auto">
@@ -1585,8 +1597,9 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-foreground mb-12">
-        Ok, Which best describes you?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Ok, Which best </span>
+        <span className="text-[#FF585E]">describes you?</span>
       </h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
@@ -1601,7 +1614,7 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
             onClick={() => handleSelection(option.value)}
             className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
               formData.housingSituation === option.value 
-                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                 : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
             }`}
           >
@@ -1615,8 +1628,9 @@ const HousingSituationStep = ({ formData, updateFormData, onNext }: {
 
 const AddressDurationStep = ({ formData, updateFormData }: { formData: FormData; updateFormData: (updates: Partial<FormData>) => void }) => (
   <div>
-    <h1 className="text-[38px] font-bold text-gray-900 mb-8">
-      How long have you lived at {formData.address}?
+    <h1 className="text-[38px] font-bold mb-8">
+      <span className="text-gray-900">How long have you </span>
+      <span className="text-[#FF585E]">lived at {formData.address}?</span>
     </h1>
     
     <p className="text-muted-foreground text-base mb-12">
@@ -1663,8 +1677,9 @@ const PreviousAddressStep = ({ formData, updateFormData, addressIndex }: {
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-        And what was your previous address?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">And what was your </span>
+        <span className="text-[#FF585E]">previous address?</span>
       </h1>
       
       <div className="max-w-2xl mx-auto">
@@ -1712,8 +1727,9 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-12">
-        Ok, Which best describes you?
+      <h1 className="text-[38px] font-bold mb-12">
+        <span className="text-gray-900">Ok, Which best </span>
+        <span className="text-[#FF585E]">describes you?</span>
       </h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto">
@@ -1728,7 +1744,7 @@ const PreviousHousingSituationStep = ({ formData, updateFormData, addressIndex, 
             onClick={() => handleSituationChange(option.value)}
             className={`px-8 py-4 rounded-2xl border-2 text-base font-medium transition-all ${
               formData.previousAddresses[addressIndex]?.housingSituation === option.value 
-                ? 'bg-[#E8F5E9] border-[#FF5A5F] border-[3px] text-foreground' 
+                ? 'bg-[#DFFFC7] border-[#FF5A5F] border-[3px] text-foreground' 
                 : 'bg-background border-gray-200 text-foreground hover:border-gray-300'
             }`}
           >
@@ -1779,8 +1795,9 @@ const PreviousAddressDurationStep = ({ formData, updateFormData, addressIndex }:
 
   return (
     <div>
-      <h1 className="text-[38px] font-bold text-gray-900 mb-8">
-        How long did you live at {address}?
+      <h1 className="text-[38px] font-bold mb-8">
+        <span className="text-gray-900">How long did you </span>
+        <span className="text-[#FF585E]">live at {address}?</span>
       </h1>
       
       <div className="max-w-2xl mx-auto mb-8">
