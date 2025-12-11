@@ -1124,10 +1124,13 @@ const CarFinanceApplication = () => {
             const x = Math.pow(1 - t, 2) * x0 + 2 * (1 - t) * t * x1 + Math.pow(t, 2) * x2;
             const y = Math.pow(1 - t, 2) * y0 + 2 * (1 - t) * t * y1 + Math.pow(t, 2) * y2;
             
+            // Car width - the back of the car should be at the end of the yellow line
+            const carWidth = 85;
+            
             return (
               <g style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}>
-                {/* Car image - positioned at the end of the yellow line */}
-                <foreignObject x={x - 10} y={y - 28} width="100" height="56">
+                {/* Car image - back of car aligned with end of yellow line */}
+                <foreignObject x={x} y={y - 20} width={carWidth} height="40">
                   <div 
                     className="flex items-center justify-start w-full h-full"
                     style={{ transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
@@ -1135,7 +1138,8 @@ const CarFinanceApplication = () => {
                     <img 
                       src={carProgressImage} 
                       alt="Progress car" 
-                      className="w-[90px] h-auto object-contain drop-shadow-md"
+                      className="h-[35px] w-auto drop-shadow-md"
+                      style={{ objectFit: 'contain' }}
                     />
                   </div>
                 </foreignObject>
