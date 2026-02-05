@@ -1,0 +1,60 @@
+      // Use stored UTM parameters
+      finalUtmParams = utmParams;
+      console.log('🔗 Final UTM parameters from storage for submission:', finalUtmParams);
+    }
+    
+    console.log('🏷️ FINAL UTM Parameters being sent to AutoConvert:', JSON.stringify(finalUtmParams, null, 2));
+    
+    try {
+      // Prepare form data with final UTM parameters
+      const submissionData = {
+        ...formData,
+        utmParams: finalUtmParams,
+        submissionTime: new Date().toISOString(),
+        referrer: document.referrer,
+      };
+
+      console.log('📦 Prepared Submission Data with Enhanced UTM:', JSON.stringify(submissionData, null, 2));
+
+      // Submit to AutoConvert API with enhanced UTM parameters
+      console.log('📤 Sending complete form data to AutoConvert API...');
+      console.log('🔗 API URL: https://api.autoconvert.co.uk/application/submit');
+      console.log('🔗 ENHANCED UTM parameters being sent to AutoConvert:', finalUtmParams);
+      
+      const autoConvertResponse = await submitToAutoConvert(formData, finalUtmParams as UTMParams);
+      
+      console.log('✅ ===== AUTOCONVERT SUBMISSION SUCCESSFUL =====');
+      console.log('📨 AutoConvert Response:', JSON.stringify(autoConvertResponse, null, 2));
+
+      toast({ 
+        title: "Application submitted successfully!", 
+        description: "Your application has been processed and sent to AutoConvert."
+      });
+
+      return autoConvertResponse;
+
+    } catch (error) {
+      console.error('❌ ===== FORM SUBMISSION FAILED =====');
+      console.error('💥 Error Details:', error);
+      console.error('📋 Error Message:', error instanceof Error ? error.message : 'Unknown error');
+      console.error('🔍 Stack Trace:', error instanceof Error ? error.stack : 'No stack trace');
+      
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      
+      toast({ 
+        title: "Submission failed", 
+        description: `Please check all fields are complete. Error: ${errorMessage}`,
+        variant: "destructive" 
+      });
+      throw error;
+    }
+  };
+
+  const rawProgress = Math.min(1, currentStep / getTotalSteps());
+  const lineProgress = Math.min(1, rawProgress);
+  const [carBounceOffset, setCarBounceOffset] = useState(0);
+  const [carBounceActive, setCarBounceActive] = useState(false);
+
+  useEffect(() => {
+    const path = progressPathRef.current;
+    if (!path) return;
