@@ -30,16 +30,17 @@ serve(async (req) => {
       url.searchParams.get('api-key') ??
       undefined;
 
-    const apiKey =
-      Deno.env.get('GETADDRESS_API_KEY') ||
-      clientApiKey ||
-      'Jn2FI4y2eUmYZN_XvGJymg48063';
+    const envApiKey = Deno.env.get('GETADDRESS_API_KEY');
+    const apiKey = envApiKey || clientApiKey;
 
     if (!apiKey) {
       throw new Error('GETADDRESS_API_KEY not configured');
     }
 
-    console.log('Address lookup request:', { action, term, id });
+    // Log which key source is being used (masked for security)
+    const keySource = envApiKey ? 'env' : (clientApiKey ? 'client' : 'none');
+    const maskedKey = apiKey ? `${apiKey.substring(0, 4)}...${apiKey.slice(-4)}` : 'none';
+    console.log('Address lookup request:', { action, term, id, keySource, maskedKey });
 
     if (!action) {
       return new Response(
