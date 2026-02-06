@@ -23,21 +23,20 @@ serve(async (req) => {
     const action = payload.action ?? url.searchParams.get('action') ?? undefined;
     const term = payload.term ?? url.searchParams.get('term') ?? undefined;
     const id = payload.id ?? url.searchParams.get('id') ?? undefined;
-    const top = payload.top ?? url.searchParams.get('top') ?? undefined;
+
+    const envApiKey = Deno.env.get('EASYPOSTCODES_API_KEY');
     const clientApiKey =
       payload.apiKey ??
       url.searchParams.get('apiKey') ??
       url.searchParams.get('api-key') ??
       undefined;
 
-    const envApiKey = Deno.env.get('GETADDRESS_API_KEY');
     const apiKey = envApiKey || clientApiKey;
 
     if (!apiKey) {
-      throw new Error('GETADDRESS_API_KEY not configured');
+      throw new Error('EASYPOSTCODES_API_KEY not configured');
     }
 
-    // Log which key source is being used (masked for security)
     const keySource = envApiKey ? 'env' : (clientApiKey ? 'client' : 'none');
     const maskedKey = apiKey ? `${apiKey.substring(0, 4)}...${apiKey.slice(-4)}` : 'none';
     console.log('Address lookup request:', { action, term, id, keySource, maskedKey });
@@ -54,97 +53,122 @@ serve(async (req) => {
 
     let data;
 
-    const parsedTop = Number(top);
-    const hasTop = Number.isFinite(parsedTop);
-    const autocompleteTop = hasTop ? Math.min(Math.max(parsedTop, 1), 100) : 100;
-    const typeaheadTop = hasTop ? Math.min(Math.max(parsedTop, 1), 100) : 100;
+    if (action === 'postcode') {
+      // EasyPostcodes: lookup addresses by postcode
+      const postcode = (term || '').replace(/\s+/g, '');
+      if (!postcode) {
+        throw new Error('Missing postcode term');
+      }
 
-    if (action === 'autocomplete') {
-      // Autocomplete search - returns list of suggestions
-      const response = await fetch(
-        `https://api.getAddress.io/autocomplete/${encodeURIComponent(term)}?api-key=${apiKey}&all=true&top=${autocompleteTop}&show-postcode=true`,
-        {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
-        }
-      );
+      const apiUrl = `https://api.easypostcodes.com/addresses/${encodeURIComponent(postcode)}?includeGeo=false`;
+      console.log('EasyPostcodes URL:', apiUrl);
+
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Key': apiKey,
+          'Accept': 'application/json',
+        },
+      });
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('getAddress.io autocomplete error:', response.status, errorText);
-        throw new Error(`getAddress.io API error: ${response.status}`);
+        console.error('EasyPostcodes error:', response.status, errorText);
+        throw new Error(`EasyPostcodes API error: ${response.status}`);
       }
 
-      data = await response.json();
-      console.log('Autocomplete results:', data.suggestions?.length || 0, 'suggestions');
+      const rawData = await response.json();
+      console.log('EasyPostcodes results:', Array.isArray(rawData) ? rawData.length : 0, 'addresses');
 
-    } else if (action === 'postcode') {
-      // Full postcode search - returns all addresses for the postcode
-      const response = await fetch(
-        `https://api.getAddress.io/find/${encodeURIComponent(term)}?api-key=${apiKey}`,
-        {
+      // Normalize EasyPostcodes response to a consistent format
+      // EasyPostcodes returns an array of address objects
+      const addresses = Array.isArray(rawData) ? rawData : [];
+      data = {
+        addresses: addresses.map((addr: any) => {
+          const line1 = [addr.buildingName, addr.line1].filter(Boolean).join(', ') || '';
+          const line2 = addr.line2 || '';
+          const city = addr.postTown || '';
+          const postCode = addr.postCode || postcode;
+          const organisation = addr.organisationName || '';
+
+          // Build a comma-separated display string
+          const displayParts = [organisation, line1, line2, city, postCode].filter(Boolean);
+          const display = displayParts.join(', ');
+
+          return {
+            display,
+            line1: organisation ? `${organisation}, ${line1}` : line1,
+            line2,
+            city,
+            postcode: postCode,
+            country: 'United Kingdom',
+          };
+        }),
+      };
+
+    } else if (action === 'autocomplete') {
+      // EasyPostcodes doesn't have a dedicated autocomplete endpoint.
+      // If the term looks like a postcode, do a postcode lookup.
+      // Otherwise return empty suggestions so the frontend can prompt manual entry.
+      const cleaned = (term || '').replace(/\s+/g, '').toUpperCase();
+      const isPostcodeLike = /^[A-Z]{1,2}[0-9]/.test(cleaned);
+
+      if (isPostcodeLike && cleaned.length >= 5) {
+        // Try postcode lookup
+        const apiUrl = `https://api.easypostcodes.com/addresses/${encodeURIComponent(cleaned)}?includeGeo=false`;
+        console.log('EasyPostcodes autocomplete-as-postcode URL:', apiUrl);
+
+        const response = await fetch(apiUrl, {
           method: 'GET',
           headers: {
+            'Key': apiKey,
             'Accept': 'application/json',
           },
+        });
+
+        if (response.ok) {
+          const rawData = await response.json();
+          const addresses = Array.isArray(rawData) ? rawData : [];
+          console.log('EasyPostcodes autocomplete results:', addresses.length, 'addresses');
+
+          // Format postcode nicely
+          const formattedPostcode = cleaned.length > 3
+            ? `${cleaned.slice(0, cleaned.length - 3)} ${cleaned.slice(-3)}`
+            : cleaned;
+
+          data = {
+            suggestions: addresses.map((addr: any) => {
+              const line1 = [addr.buildingName, addr.line1].filter(Boolean).join(', ') || '';
+              const line2 = addr.line2 || '';
+              const city = addr.postTown || '';
+              const postCode = addr.postCode || formattedPostcode;
+              const organisation = addr.organisationName || '';
+
+              const displayParts = [organisation, line1, line2, city, postCode].filter(Boolean);
+
+              return {
+                address: displayParts.join(', '),
+                postcode: postCode,
+                id: null, // No separate get needed
+                line1: organisation ? `${organisation}, ${line1}` : line1,
+                line2,
+                city,
+              };
+            }),
+          };
+        } else {
+          const errorText = await response.text();
+          console.error('EasyPostcodes autocomplete error:', response.status, errorText);
+          data = { suggestions: [] };
         }
-      );
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('getAddress.io find error:', response.status, errorText);
-        throw new Error(`getAddress.io API error: ${response.status}`);
+      } else {
+        // Not enough for a postcode lookup yet
+        console.log('Term not postcode-like enough for EasyPostcodes, returning empty suggestions');
+        data = { suggestions: [] };
       }
-
-      data = await response.json();
-      console.log('Postcode results:', Array.isArray(data?.addresses) ? data.addresses.length : 0, 'addresses');
-
-    } else if (action === 'typeahead') {
-      // Typeahead search - returns list of possible values
-      const response = await fetch(
-        `https://api.getAddress.io/typeahead/${encodeURIComponent(term)}?api-key=${apiKey}&top=${typeaheadTop}`,
-        {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
-        }
-      );
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('getAddress.io typeahead error:', response.status, errorText);
-        throw new Error(`getAddress.io API error: ${response.status}`);
-      }
-
-      data = await response.json();
-      console.log('Typeahead results:', Array.isArray(data) ? data.length : 0, 'results');
-
-    } else if (action === 'get') {
-      // Get full address details by ID
-      const response = await fetch(
-        `https://api.getAddress.io/get/${encodeURIComponent(id)}?api-key=${apiKey}`,
-        {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-          },
-        }
-      );
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('getAddress.io get error:', response.status, errorText);
-        throw new Error(`getAddress.io API error: ${response.status}`);
-      }
-
-      data = await response.json();
-      console.log('Address details retrieved:', data);
 
     } else {
-      throw new Error('Invalid action. Use "autocomplete", "postcode", "typeahead", or "get"');
+      throw new Error('Invalid action. Use "postcode" or "autocomplete"');
     }
 
     return new Response(JSON.stringify(data), {
