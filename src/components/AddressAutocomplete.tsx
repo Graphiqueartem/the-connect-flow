@@ -87,7 +87,7 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
     setIsLoading(false);
   };
 
-  // Fetch UK address suggestions using getAddress.io via edge function
+  // Fetch UK address suggestions using EasyPostcodes via edge function
   const fetchAddressSuggestions = async (query: string, mode: "autocomplete" | "postcode" = "autocomplete") => {
     const requestId = ++requestIdRef.current;
     if (query.length < 2) {
@@ -98,7 +98,7 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
     }
 
     setIsLoading(true);
-    console.log('Fetching suggestions for:', query);
+    console.log('Fetching suggestions for:', query, 'mode:', mode);
 
     try {
       if (disableGetAddress) {
@@ -106,118 +106,58 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
         return;
       }
 
-      const lookupTerm = mode === "postcode" ? query.replace(/\s+/g, "") : query;
-      let data: any = null;
-      let error: any = null;
-      const baseBody = {
-        action: mode === "postcode" ? 'postcode' : 'autocomplete',
+      const lookupTerm = query.replace(/\s+/g, "");
+      const action = isFullPostcode(query) ? 'postcode' : 'autocomplete';
+
+      const response = await invokeAddressLookup({
+        action,
         term: lookupTerm,
-        top: mode === "postcode" ? 6 : 6
-      };
-      const response = await invokeAddressLookup(baseBody);
-      data = response.data;
-      error = response.error;
+      });
+
+      const data = response.data;
+      const error = response.error;
 
       if (error) {
         console.error('Edge function error:', error);
         throw error;
       }
 
-      console.log('Autocomplete response:', data);
+      console.log('Address response:', data);
 
       let addressSuggestions: AddressSuggestion[] = [];
 
-      if (mode === "postcode" && data && Array.isArray(data.addresses) && data.addresses.length > 0) {
-        const formattedPostcode = formatPostcode(query);
-        addressSuggestions = data.addresses.map((address: string) => {
-          const parts = address.split(",").map((part: string) => part.trim()).filter(Boolean);
-          const line1 = parts[0] || address;
-          const city = parts.length > 1 ? parts[parts.length - 1] : "";
-          const line2 = parts.slice(1, parts.length - 1).join(", ");
-          const displayWithPostcode = formattedPostcode
-            ? `${address}, ${formattedPostcode}`
-            : address;
-
-          return {
-            display: displayWithPostcode,
-            postcode: formattedPostcode,
-            line1,
-            line2,
-            city,
-            country: 'United Kingdom',
-            state: '',
-            kind: "address"
-          };
-        });
-      } else if (mode === "postcode" && (!data || !Array.isArray(data.addresses) || data.addresses.length === 0)) {
-        return fetchAddressSuggestions(query, "autocomplete");
-      } else if (data && data.suggestions && data.suggestions.length > 0) {
-        // Map getAddress.io suggestions to our format and keep postcode visible
-        addressSuggestions = data.suggestions.slice(0, 50).map((suggestion: any) => {
-          const formattedPostcode = formatPostcode(suggestion.postcode || suggestion.post_code || '');
-          const displayWithPostcode = formattedPostcode
-            ? `${suggestion.address}, ${formattedPostcode}`
-            : suggestion.address;
-
-          return {
-            display: displayWithPostcode,
-            id: suggestion.id,
-            postcode: formattedPostcode,
-            line1: '',
-            line2: '',
-            city: '',
-            country: 'United Kingdom',
-            state: '',
-            kind: "address"
-          };
-        });
+      if (action === 'postcode' && data?.addresses && Array.isArray(data.addresses) && data.addresses.length > 0) {
+        // Postcode lookup returns fully resolved addresses
+        addressSuggestions = data.addresses.map((addr: any) => ({
+          display: addr.display,
+          postcode: addr.postcode,
+          line1: addr.line1,
+          line2: addr.line2,
+          city: addr.city,
+          country: addr.country || 'United Kingdom',
+          kind: "address" as const,
+        }));
+      } else if (data?.suggestions && Array.isArray(data.suggestions) && data.suggestions.length > 0) {
+        // Autocomplete-style results (postcode detected in term)
+        addressSuggestions = data.suggestions.map((suggestion: any) => ({
+          display: suggestion.address,
+          postcode: suggestion.postcode,
+          line1: suggestion.line1,
+          line2: suggestion.line2,
+          city: suggestion.city,
+          country: 'United Kingdom',
+          kind: "address" as const,
+        }));
       }
 
-      let combinedSuggestions = [...addressSuggestions];
+      if (requestId !== requestIdRef.current) return;
 
-      // If fewer than desired, supplement with typeahead results
-      if (mode === "autocomplete" && combinedSuggestions.length < minSuggestions) {
-        let typeaheadData: any = null;
-        let typeaheadError: any = null;
-        const baseBody = {
-          action: 'typeahead',
-          term: query,
-          top: 6
-        };
-        const response = await invokeAddressLookup(baseBody);
-        typeaheadData = response.data;
-        typeaheadError = response.error;
-
-        if (!typeaheadError && Array.isArray(typeaheadData)) {
-          const existing = new Set(combinedSuggestions.map((s) => s.display.toLowerCase()));
-          const needed = Math.max(minSuggestions - combinedSuggestions.length, 0);
-          const extras = typeaheadData
-            .map((value: string) => value.trim())
-            .filter(Boolean)
-            .filter((value: string) => !existing.has(value.toLowerCase()))
-            .slice(0, needed)
-            .map((value: string) => ({
-              display: value,
-              kind: "query" as const
-            }));
-
-          combinedSuggestions = [...combinedSuggestions, ...extras];
-        }
-      }
-
-      if (requestId !== requestIdRef.current) {
-        return;
-      }
-
-      applySuggestions(combinedSuggestions, requestId);
+      applySuggestions(addressSuggestions, requestId);
     } catch (error: any) {
       console.error('Address lookup failed:', error);
       const isUnauthorized = typeof error?.message === "string" && error.message.includes("401");
       if (isUnauthorized) {
         setDisableGetAddress(true);
-      }
-      if (mode === "postcode" && !disableGetAddress && !isUnauthorized) {
-        return fetchAddressSuggestions(query, "autocomplete");
       }
       applySuggestions([], requestId);
     }
@@ -269,7 +209,7 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
   };
 
   const handleSuggestionClick = async (suggestion: AddressSuggestion) => {
-    // If it's a manual entry option, just use the current input value
+    // If it's a manual entry option, switch to manual mode
     if (suggestion.kind === "manual") {
       setManualMode(true);
       onChange("");
@@ -295,71 +235,17 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
       return;
     }
 
-    if (suggestion.kind === "address" && !suggestion.id) {
-      setManualMode(false);
-      if (suggestion.postcode) {
-        setInputValue(suggestion.postcode);
-      }
-      onChange(suggestion.display, {
-        postcode: suggestion.postcode,
-        city: suggestion.city,
-        line1: suggestion.line1,
-        line2: suggestion.line2,
-      });
-      setShowSuggestions(false);
-      setSuggestions([]);
-      setIsLoading(false);
-      return;
+    // EasyPostcodes returns full address details directly - no secondary "get" call needed
+    setManualMode(false);
+    if (suggestion.postcode) {
+      setInputValue(suggestion.postcode);
     }
-
-    // Fetch full address details using the ID (getAddress)
-    setIsLoading(true);
-    try {
-      let data: any = null;
-      let error: any = null;
-      const baseBody = {
-        action: 'get',
-        id: suggestion.id
-      };
-      const response = await invokeAddressLookup(baseBody);
-      data = response.data;
-      error = response.error;
-
-      if (error) {
-        console.error('Error fetching address details:', error);
-        throw error;
-      }
-
-      console.log('Full address details:', data);
-
-      // Extract address components from getAddress.io response
-      const line1 = data.line_1 || '';
-      const line2 = data.line_2 || data.line_3 || '';
-      const city = data.town_or_city || data.locality || '';
-      const postcode = formatPostcode(data.postcode || '');
-
-      const fullDisplay = [data.line_1, data.line_2, data.line_3, city, postcode].filter(Boolean).join(', ');
-
-      setManualMode(false);
-      if (postcode) {
-        setInputValue(postcode);
-      }
-      onChange(fullDisplay || suggestion.display, {
-        postcode: postcode,
-        city: city,
-        line1: line1,
-        line2: line2
-      });
-
-    } catch (error: any) {
-      console.error('Failed to fetch address details:', error);
-      if (typeof error?.message === "string" && error.message.includes("401")) {
-        setDisableGetAddress(true);
-      }
-      // Fallback to just using the display text
-      onChange(suggestion.display);
-    }
-
+    onChange(suggestion.display, {
+      postcode: suggestion.postcode,
+      city: suggestion.city,
+      line1: suggestion.line1,
+      line2: suggestion.line2,
+    });
     setShowSuggestions(false);
     setSuggestions([]);
     setIsLoading(false);

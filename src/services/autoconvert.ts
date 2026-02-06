@@ -336,7 +336,7 @@ export const mapFormDataToPayload = (formData: FormData, utmParams: UTMParams): 
     CampaignCode4: utmParams.utm_term?.substring(0, 32) || "default_term",
     CampaignCode5: utmParams.utm_content?.substring(0, 32) || "default_content",
     SourceReference: "Leadly applications",
-    AmountToBorrow: parseInt(formData.loanAmount || "0", 10),
+    AmountToBorrow: (formData.loanAmount || "0"),
     Term: 60,
     LoanTerm: 60,
     LoanAmount: parseInt(formData.loanAmount || "0", 10),
