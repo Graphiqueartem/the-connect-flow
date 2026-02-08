@@ -146,7 +146,7 @@ const AddressAutocomplete = ({ value, onChange, className, placeholder }: Addres
       const autoSuggestions: AddressSuggestion[] = (
         response.data?.suggestions || []
       ).map((s: any) => ({
-        display: s.display,
+        display: s.count > 1 ? `${s.display} (${s.count} addresses)` : s.display,
         id: s.id,
         type: s.type,
         // ADD = specific address (needs retrieve), others = group (needs drill-down)
