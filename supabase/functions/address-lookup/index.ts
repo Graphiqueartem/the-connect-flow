@@ -2,12 +2,12 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+    return new Response('ok', { headers: corsHeaders });
   }
 
   try {
@@ -67,6 +67,7 @@ serve(async (req) => {
           display: addr.summaryline || '',
           line1: addr.addressline1 || '',
           line2: addr.addressline2 || '',
+          line3: addr.addressline3 || '',
           city: addr.posttown || '',
           postcode: addr.postcode || '',
           county: addr.county || '',
@@ -76,10 +77,11 @@ serve(async (req) => {
 
     } else if (action === 'autocomplete') {
       // Postcoder autocomplete/find - free suggestions as user types
+      // Docs: https://postcoder.com/docs/address-lookup/autocomplete-find
       const query = (term || '').trim();
       if (!query) throw new Error('Missing search query');
 
-      let apiUrl = `https://ws.postcoder.com/pcw/autocomplete/find?query=${encodeURIComponent(query)}&country=uk&apikey=${apiKey}`;
+      let apiUrl = `https://ws.postcoder.com/pcw/autocomplete/find?query=${encodeURIComponent(query)}&country=uk&apikey=${apiKey}&format=json&singlesummary=true`;
       if (pathfilter) {
         apiUrl += `&pathfilter=${encodeURIComponent(pathfilter)}`;
       }
@@ -100,13 +102,16 @@ serve(async (req) => {
       data = {
         suggestions: suggestions.map((s: any) => ({
           display: s.summaryline || '',
+          locationsummary: s.locationsummary || '',
           id: s.id || null,
-          type: s.type || '', // "ADD" for address, others are groups/containers
+          type: s.type || '',
+          count: s.count || 0,
         })),
       };
 
     } else if (action === 'retrieve') {
       // Postcoder autocomplete/retrieve - get full address for a suggestion ID
+      // Docs: https://postcoder.com/docs/address-lookup/autocomplete-retrieve
       if (!id) throw new Error('Missing suggestion id for retrieve');
       const query = (term || '').trim();
 
@@ -130,6 +135,7 @@ serve(async (req) => {
           display: addr.summaryline || '',
           line1: addr.addressline1 || '',
           line2: addr.addressline2 || '',
+          line3: addr.addressline3 || '',
           city: addr.posttown || '',
           postcode: addr.postcode || '',
           county: addr.county || '',
